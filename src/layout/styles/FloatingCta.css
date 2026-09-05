@@ -1,0 +1,4 @@
+/* layout/styles/FloatingCta.css */
+.float-cta { position: fixed; bottom: 24px; right: 24px; z-index: 40; opacity: 0; transform: translateY(20px); transition: opacity .3s, transform .3s; pointer-events: none; }
+.float-cta.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+@media (max-width: 640px) { .float-cta { bottom: 16px; right: 16px; } }

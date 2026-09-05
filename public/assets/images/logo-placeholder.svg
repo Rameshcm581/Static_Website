@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="44" viewBox="0 0 180 44" role="img" aria-label="Logo placeholder">
+  <rect x="2" y="2" width="40" height="40" rx="11" fill="#F26B2C"/>
+  <path d="M13 29l9-14 9 14" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="54" y="29" font-family="Inter, system-ui, sans-serif" font-size="19" font-weight="700" fill="#1F3354" letter-spacing="1">LOGO</text>
+</svg>

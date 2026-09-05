@@ -1,0 +1,9 @@
+/* Contact/Contact/styles/ContactSection.css */
+.contact-sec { padding: 120px 0; background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 80px; align-items: start; }
+.contact-title { margin-top: 14px; }
+.contact-accent { color: var(--moss); }
+.contact-intro { margin-top: 22px; font-size: 15.5px; max-width: 440px; color: var(--ink-2); }
+
+@media (max-width: 980px) { .contact-grid { grid-template-columns: 1fr; gap: 48px; } }
+@media (max-width: 640px) { .contact-sec { padding: 80px 0; } }

@@ -1,0 +1,7 @@
+/* Contact/Contact/styles/ContactChannels.css */
+.contact-channels { margin-top: 36px; display: flex; flex-direction: column; gap: 0; }
+.contact-channels .ch { display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: center; padding: 18px 0; border-top: 1px solid var(--line); font-size: 14.5px; color: var(--ink-2); }
+.contact-channels .ch:last-child { border-bottom: 1px solid var(--line); }
+.contact-channels .ch-ico { width: 38px; height: 38px; border-radius: 10px; background: linear-gradient(180deg, #FBE0CC, #F4B287); color: var(--moss-2); display: grid; place-items: center; }
+.contact-channels .ch b { display: block; color: var(--ink); font-weight: 600; margin-bottom: 2px; font-size: 14.5px; }
+.contact-channels .ch a { color: var(--moss); }

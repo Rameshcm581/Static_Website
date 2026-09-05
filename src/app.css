@@ -1,0 +1,7 @@
+/* src/app.css — App shell layout */
+
+.site-shell { display: flex; flex-direction: column; min-height: 100vh; }
+.site-main { flex: 1; min-width: 0; }
+
+/* Lock page scroll while the mobile menu is open */
+body.is-menu-open { overflow: hidden; }

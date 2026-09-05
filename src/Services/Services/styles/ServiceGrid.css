@@ -1,0 +1,21 @@
+/* Services/Services/styles/ServiceGrid.css */
+.services { padding: 140px 0; }
+.svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 24px; overflow: hidden; }
+.svc { background: var(--paper); padding: 36px 32px 30px; display: flex; flex-direction: column; gap: 18px; transition: background .25s, transform .25s; position: relative; }
+.svc:hover { background: #FFFCF3; }
+.svc-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.svc .num { font-family: var(--mono); font-size: 11px; letter-spacing: .2em; color: var(--muted); }
+.svc h3 { font-weight: 500; }
+.svc p { font-size: 14.5px; margin: 0; color: var(--ink-2); line-height: 1.55; }
+.svc .more { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--moss); font-weight: 500; margin-top: 14px; letter-spacing: .01em; }
+.svc .ico-wrap { width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(180deg, #E6EAF2, #CCD5E3); display: grid; place-items: center; color: var(--ink); }
+.svc-list { margin: 6px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.svc-list li { font-size: 13px; color: var(--muted); display: flex; gap: 8px; align-items: center; }
+.svc-list li::before { content: ""; width: 4px; height: 4px; border-radius: 50%; background: var(--moss); flex-shrink: 0; }
+
+@media (max-width: 980px) { .svc-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px) {
+  .services { padding: 80px 0; }
+  .svc-grid { grid-template-columns: 1fr; }
+  .svc { padding: 28px 22px 26px; }
+}

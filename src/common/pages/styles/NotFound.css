@@ -1,0 +1,6 @@
+/* common/pages/styles/NotFound.css */
+.not-found { padding: 190px 0 140px; min-height: 70vh; position: relative; overflow: hidden; }
+.not-found::before { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 60% at 80% 0%, rgba(242,107,44,.10), transparent 70%); pointer-events: none; }
+.not-found__title { font-size: clamp(48px, 7vw, 96px); }
+.not-found__accent { color: var(--moss); }
+@media (max-width: 640px) { .not-found { padding: 130px 0 80px; } }

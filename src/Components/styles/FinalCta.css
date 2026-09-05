@@ -1,0 +1,14 @@
+/* Components/styles/FinalCta.css */
+.final { padding: 160px 0; background: radial-gradient(120% 100% at 50% 0%, #2A4570 0%, #16243D 60%, #0D1626 100%); color: var(--cream); text-align: center; position: relative; overflow: hidden; }
+.final::before { content: ""; position: absolute; inset: 0; background: radial-gradient(40% 40% at 30% 80%, rgba(242,107,44,.22), transparent 70%), radial-gradient(40% 40% at 70% 20%, rgba(242,107,44,.14), transparent 70%); pointer-events: none; }
+.final .eyebrow { color: rgba(251,246,233,.6); position: relative; }
+.final h2 { margin: 16px auto 22px; max-width: 900px; color: var(--cream); position: relative; }
+.final h2 em { color: #FFB890; font-style: italic; font-weight: 500; }
+.final p { max-width: 540px; margin: 0 auto; color: rgba(251,246,233,.78); font-size: 16px; position: relative; }
+.final .row { display: flex; justify-content: center; gap: 14px; margin-top: 42px; position: relative; flex-wrap: wrap; }
+
+@media (max-width: 640px) {
+  .final { padding: 90px 0; }
+  .final .row { flex-direction: column; align-items: stretch; }
+  .final .row .btn { justify-content: center; }
+}

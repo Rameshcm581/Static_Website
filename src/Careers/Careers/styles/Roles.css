@@ -1,0 +1,25 @@
+/* Careers/Careers/styles/Roles.css */
+.roles { padding: 140px 0; }
+.roles-list { margin-top: 32px; border-top: 1px solid var(--line); }
+.role { display: grid; grid-template-columns: 140px 1fr auto auto; gap: 32px; align-items: center; padding: 24px 4px; border-bottom: 1px solid var(--line); transition: padding-left .25s, background .2s; }
+.role:hover { padding-left: 16px; background: var(--paper); }
+.role-team { font-family: var(--mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+.role-title { font-family: var(--serif); font-size: 28px; font-weight: 500; color: var(--ink); letter-spacing: -.01em; }
+.role-meta { display: flex; gap: 6px; font-size: 13px; color: var(--muted); }
+.role-cta { display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--moss); font-weight: 500; padding: 10px 16px; border: 1px solid var(--line); border-radius: 999px; transition: background .2s, border-color .2s, color .2s; }
+.role-cta:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.careers-apply { margin-top: 48px; background: var(--paper); border: 1px solid var(--line); border-radius: 22px; padding: 36px 40px; display: grid; grid-template-columns: 1.6fr auto; gap: 32px; align-items: center; }
+.careers-apply h3 { font-family: var(--serif); font-weight: 500; font-size: 30px; color: var(--ink); margin: 0 0 8px; }
+.careers-apply p { margin: 0; font-size: 14.5px; color: var(--ink-2); max-width: 540px; }
+
+@media (max-width: 980px) {
+  .role { grid-template-columns: 1fr; gap: 8px; align-items: flex-start; padding: 24px 4px; }
+  .role-meta { flex-wrap: wrap; }
+  .role-cta { justify-self: start; }
+  .careers-apply { grid-template-columns: 1fr; text-align: left; }
+}
+@media (max-width: 640px) {
+  .roles { padding: 80px 0; }
+  .careers-apply { padding: 28px 22px; }
+  .careers-apply .btn { max-width: 100%; }
+}
