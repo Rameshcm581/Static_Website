@@ -33,7 +33,7 @@ export default function Footer() {
         <div className="foot-grid">
           <div className="foot-brand">
             <div className="foot-brand__row">
-              <img className="logo-mark foot-logo" src="/assets/images/logo-placeholder.svg" alt={COMPANY.name} />
+              <img className="logo-mark foot-logo" src={`${import.meta.env.BASE_URL}assets/images/logo-placeholder.svg`} alt={COMPANY.name} />
             </div>
             <p>A product engineering and digital-transformation studio from {COMPANY.state}. We turn product ideas into digital solutions that solve.</p>
             <p className="foot-tag">Code your team can own.</p>

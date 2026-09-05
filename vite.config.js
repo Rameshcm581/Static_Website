@@ -2,7 +2,11 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 
-export default defineConfig({
+// GitHub Pages serves this project repo from /Static_Website/.
+// Dev keeps '/' so localhost:3000 works unchanged.
+// Override with VITE_BASE=/ when moving to a custom domain or a root host.
+export default defineConfig(({ command }) => ({
+  base: process.env.VITE_BASE || (command === 'build' ? '/Static_Website/' : '/'),
   plugins: [react()],
   resolve: {
     alias: {
@@ -25,4 +29,4 @@ export default defineConfig({
       },
     },
   },
-});
+}));

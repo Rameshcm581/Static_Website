@@ -37,7 +37,7 @@ export default function NavBar() {
       <div className="nav-inner">
         <div className="nav-brand">
           <Link to={ROUTES.HOME} aria-label={`${COMPANY.name} home`}>
-            <img className="logo-mark" src="/assets/images/logo-placeholder.svg" alt={COMPANY.name} />
+            <img className="logo-mark" src={`${import.meta.env.BASE_URL}assets/images/logo-placeholder.svg`} alt={COMPANY.name} />
           </Link>
         </div>
 
