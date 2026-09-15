@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import Icon from './Icon';
-import { COMPANY, MAILTO, TEL } from '@data/company';
+import { COMPANY, MAILTO } from '@data/company';
 import { ROUTES } from '@data/navigation';
 import './styles/TrustBand.css';
 
@@ -29,7 +29,7 @@ export default function TrustBand() {
             <h4>Get in touch</h4>
             <p>
               <a href={MAILTO}>{COMPANY.email}</a><br />
-              <a href={TEL}>{COMPANY.phone}</a><br />
+              {COMPANY.phone}<br />
               <Link to={ROUTES.CONTACT} className="trust-link">Project enquiries →</Link>
             </p>
           </div>

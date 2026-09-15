@@ -1,22 +1,66 @@
-/* Components/styles/ProcessSection.css */
-.process { padding: 120px 0; background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.process-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start; }
-.process-title { margin-top: 18px; }
-.process-accent { color: var(--moss); }
-.process-intro { margin-top: 24px; font-size: 15px; max-width: 380px; color: var(--ink-2); }
-.process-cta { margin-top: 28px; }
-.steps { display: flex; flex-direction: column; gap: 0; }
-.step { display: grid; grid-template-columns: 80px 1fr; gap: 24px; padding: 32px 0; border-top: 1px solid var(--line); position: relative; transition: padding-left .25s; }
-.step:last-child { border-bottom: 1px solid var(--line); }
-.step:hover { padding-left: 12px; }
-.step .n { font-family: var(--serif); font-size: 48px; font-style: italic; color: var(--moss); line-height: 1; font-weight: 500; }
-.step h3 { font-size: 24px; margin-bottom: 8px; }
-.step p { font-size: 14.5px; margin: 0; color: var(--ink-2); }
-.step .time { font-family: var(--mono); font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin-top: 10px; display: inline-block; }
+/* Components/styles/ProcessSection.css — dark chapter: pinned numeral on the left, the five steps on the right */
+.process { position: relative; overflow: clip; padding: 140px 0 120px; color: #FAF1E0;
+  background: radial-gradient(120% 90% at 82% 0%, #26395E 0%, #1C2740 48%, #141D30 100%); }
+.process::before { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(42% 46% at 10% 96%, rgba(242,107,44,.20), transparent 70%); }
+.process .wrap { position: relative; }
+.process ::selection { background: rgba(242,107,44,.55); color: #FFF7EA; }
 
-@media (max-width: 980px) { .process-grid { grid-template-columns: 1fr; gap: 32px; } }
-@media (max-width: 640px) { .process { padding: 80px 0; } }
-@media (max-width: 480px) {
-  .step { grid-template-columns: 52px 1fr; gap: 16px; padding: 24px 0; }
-  .step .n { font-size: 36px; }
+.process-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 60px; }
+.process-head h2 { max-width: 640px; color: #FAF1E0; text-wrap: balance; }
+.process-accent { color: #F7803F; }
+.process-intro { max-width: 380px; margin: 0 0 6px; font-size: 16px; line-height: 1.6; color: rgba(250,241,224,.78); }
+
+.process-body { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 80px; align-items: start; margin-top: 96px; }
+
+/* pinned numeral */
+.process-pin { position: sticky; top: 150px; }
+.pin-numerals { position: relative; height: clamp(160px, 17vw, 250px); }
+.pin-n { position: absolute; left: -.04em; top: 0; font-family: var(--serif); font-style: italic; font-weight: 500; font-size: clamp(190px, 20vw, 300px); line-height: .82; letter-spacing: -.05em; color: #F7803F;
+  opacity: 0; transform: translateY(26px); transition: opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1); }
+.pin-n.is-active { opacity: 1; transform: none; }
+.pin-rail { display: flex; gap: 8px; margin-top: 34px; }
+.pin-tick { width: 40px; height: 2px; border-radius: 2px; background: rgba(250,241,224,.18); transition: background .45s; }
+.pin-tick.is-done { background: #F7803F; }
+.pin-count { margin-top: 14px; font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: rgba(250,241,224,.6); font-variant-numeric: tabular-nums; }
+
+/* the steps */
+.steps { list-style: none; margin: 0; padding: 0; }
+.step { padding: 44px 0 46px; border-top: 1px solid rgba(250,241,224,.12); opacity: .65; transition: opacity .5s cubic-bezier(.16,1,.3,1); }
+.step:last-child { border-bottom: 1px solid rgba(250,241,224,.12); }
+.step.is-active { opacity: 1; }
+.step-head { display: flex; align-items: baseline; gap: 18px; }
+.step-n { display: none; font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 28px; line-height: 1; color: #F7803F; min-width: 40px; }
+.step h3 { font-size: 30px; color: #FAF1E0; }
+.step p { margin: 14px 0 0; max-width: 54ch; font-size: 16px; line-height: 1.65; color: rgba(250,241,224,.78); }
+
+.step-get { display: inline-flex; align-items: flex-start; gap: 8px; margin-top: 20px; padding: 8px 12px 8px 10px; border-radius: 12px; background: rgba(242,107,44,.16); border: 1px solid rgba(242,107,44,.22); color: #FAF1E0; font-size: 12.5px; font-weight: 600; line-height: 1.35; }
+.step-get svg { flex-shrink: 0; margin-top: 2px; color: #FFB37A; }
+.step-get em { font-style: normal; font-weight: 500; color: rgba(250,241,224,.7); }
+.step-get em::after { content: " ·"; }
+
+.process-foot { display: flex; align-items: center; gap: 22px; margin-top: 88px; padding-top: 32px; border-top: 1px solid rgba(250,241,224,.12); }
+.process-foot p { margin: 0; font-family: var(--serif); font-style: italic; font-size: 22px; color: rgba(250,241,224,.82); }
+
+@media (max-width: 980px) {
+  .process { padding: 110px 0 96px; }
+  .process-head { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .process-intro { max-width: 560px; }
+  .process-body { grid-template-columns: minmax(0, 1fr); gap: 0; margin-top: 56px; }
+  .process-pin { display: none; }
+  .step { opacity: 1; padding: 34px 0 36px; }
+  .step-n { display: block; }
+  .step h3 { font-size: 26px; }
+  .step p { font-size: 15.5px; }
+}
+@media (max-width: 640px) {
+  .process { padding: 80px 0 72px; }
+  .step { padding: 28px 0 30px; }
+  .step-head { gap: 14px; }
+  .step-n { font-size: 24px; min-width: 34px; }
+  .step h3 { font-size: 23px; }
+  .process-foot { flex-direction: column; align-items: flex-start; gap: 16px; margin-top: 56px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pin-n, .step, .pin-tick { transition: none; }
 }

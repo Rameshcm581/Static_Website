@@ -1,7 +1,7 @@
 // src/Contact/Contact/ContactChannels.jsx — email, phone, addresses, careers link
 import { Link } from 'react-router-dom';
 import Icon from '@components/Icon';
-import { COMPANY, MAILTO, TEL } from '@data/company';
+import { COMPANY, MAILTO } from '@data/company';
 import { ROUTES } from '@data/navigation';
 import './styles/ContactChannels.css';
 
@@ -14,7 +14,7 @@ export default function ContactChannels() {
       </div>
       <div className="ch">
         <div className="ch-ico"><Icon name="phone" size={18} /></div>
-        <div><b>Phone</b><a href={TEL}>{COMPANY.phone}</a></div>
+        <div><b>Phone</b>{COMPANY.phone}</div>
       </div>
       <div className="ch">
         <div className="ch-ico"><Icon name="pin" size={18} /></div>

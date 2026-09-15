@@ -1,0 +1,38 @@
+/* Careers/Careers/styles/Opening.css — the invitation */
+.cr-open { position: relative; overflow: clip; padding: 176px 0 96px; background: var(--paper); border-bottom: 1px solid var(--line); }
+.cr-open::before { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(48% 42% at 50% 0%, rgba(242,107,44,.16), transparent 70%), radial-gradient(40% 40% at 8% 100%, rgba(31,51,84,.07), transparent 70%), radial-gradient(40% 40% at 92% 100%, rgba(31,51,84,.07), transparent 70%); }
+.cr-open__inner { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.cr-open .crumbs { display: flex; gap: 8px; align-items: center; margin-bottom: 40px; font-family: var(--mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: #4E5D78; }
+.cr-open .crumbs a:hover { color: var(--ink); }
+.cr-open .crumbs .sep { opacity: .5; }
+
+.cr-open h1 { font-size: clamp(56px, 9vw, 132px); line-height: .94; letter-spacing: -.035em; text-wrap: balance; }
+.cr-open h1 .w { display: inline-block; animation: word-up .9s cubic-bezier(.16,1,.3,1) both; }
+.cr-open h1 .w:nth-child(2) { animation-delay: .08s; }
+.cr-open h1 .w.accent { color: var(--moss); animation-delay: .16s; }
+
+.cr-open__lede { margin: 30px 0 0; max-width: 40ch; font-size: clamp(17px, 1.4vw, 20px); line-height: 1.55; color: var(--ink-2); text-wrap: balance; animation: word-up .9s cubic-bezier(.16,1,.3,1) .28s both; }
+
+/* the doors */
+.cr-open__doors { list-style: none; margin: 44px 0 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.cr-open__doors li { animation: word-up .8s cubic-bezier(.16,1,.3,1) both; animation-delay: calc(.4s + var(--i) * .08s); }
+.cr-open__doors a { display: inline-flex; align-items: center; gap: 14px; padding: 12px 16px 12px 20px; border-radius: 999px; border: 1px solid var(--line); background: #FFFDF8; color: var(--ink); box-shadow: 0 10px 24px -18px rgba(20,17,13,.35); transition: border-color .25s, box-shadow .3s, transform .3s cubic-bezier(.16,1,.3,1); }
+.door-team { font-family: var(--mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: #4E5D78; }
+.door-title { font-family: var(--serif); font-size: 20px; font-weight: 500; letter-spacing: -.01em; }
+.cr-open__doors svg { color: var(--moss-2); transition: transform .3s cubic-bezier(.16,1,.3,1); }
+.cr-open__doors a:hover, .cr-open__doors a:focus-visible { border-color: var(--ink); transform: translateY(-2px); box-shadow: 0 18px 34px -20px rgba(20,17,13,.45); }
+.cr-open__doors a:hover svg, .cr-open__doors a:focus-visible svg { transform: translateX(4px); }
+.cr-open__doors a:focus-visible { outline: 2px solid var(--moss); outline-offset: 3px; }
+.cr-open__foot { margin: 26px 0 0; font-size: 13.5px; color: #4E5D78; animation: word-up .8s cubic-bezier(.16,1,.3,1) .7s both; }
+
+@keyframes word-up { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+
+@media (max-width: 640px) {
+  .cr-open { padding: 130px 0 72px; }
+  .cr-open h1 { font-size: clamp(52px, 17vw, 80px); }
+  .cr-open__doors { flex-direction: column; align-items: stretch; width: 100%; }
+  .cr-open__doors a { display: flex; justify-content: space-between; text-align: left; }
+  .door-team { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .cr-open h1 .w, .cr-open__lede, .cr-open__doors li, .cr-open__foot { animation: none; } .cr-open__doors a, .cr-open__doors svg { transition: none; } }

@@ -70,6 +70,13 @@ Also needed for `index.html` (seen by crawlers and social previews before the ap
 | 19 | Static page title | `[Company Name] \| Product Engineering & Digital Solutions Studio` | Final title, under 60 characters ideal |
 | 20 | Meta description | "We turn product ideas into digital solutions that solve — MVP development, web & mobile apps, and technology consulting." | Confirm or rewrite, under 160 characters |
 
+Also needed for the **studio board** on Home ("Selected work" section). It lives in `src/data/board.js` and every row in it is a placeholder today:
+
+| # | Item | Current value | Provide |
+|---|---|---|---|
+| 21 | Studio board entries | Five invented rows (Ordering app · Retail · In build · Erode, etc.) | 3 to 6 real, anonymised engagements. For each: project type (e.g. "Ordering app"), sector (e.g. "Retail"), stage as a number 1–5 (1 Discovery · 2 Scoping · 3 In build · 4 Launching · 5 Live), and city. No client names |
+| 22 | Board "updated" month | `September 2026` | The month the rows were last checked. Someone must own updating this monthly, or the line will be removed |
+
 ---
 
 ## 2. Brand assets
@@ -128,11 +135,7 @@ All copy below is already written as a draft in the brand voice. Mark each item 
 - Chat mock: "Your product team · [Company Name] · Online", eight scrolling status messages (e.g. "Designs reviewed with founder Tuesday", "Auth + payments scaffold deployed"), footer "Weekly progress posted". ⚠ Confirm "weekly progress" matches how you actually work.
 - "Why teams choose us": heading "A small team that acts like yours.", intro, six cards: Small & senior, Real-problem first, Outcome-owned, Code you own, Ship early then improve, Honest scope & timelines. ⚠ The last card promises "Fixed quotes, no surprises".
 - "How we work": five steps Discovery, Scope & design, Build, Launch, Improve, each with a paragraph. ⚠ Step 3 promises "Weekly demos" and "a working preview environment early".
-- "Selected work": heading "Quietly building behind the scenes.", intro says work is under NDA and a case-study page is coming soon. Three "Coming soon" cards with invented one-liners:
-  - "A fintech founder's first product, built from sketch to v1.0 and used in a seed round."
-  - "A custom chatbot replacing tier-1 support for a B2B SaaS team in southern India."
-  - "A multi-tenant SaaS platform with payments, dashboards, and a reporting engine."
-  ⚠ Replace with real NDA-safe summaries, or approve the text as anonymised, or remove the section. Button "Request a private walk-through".
+- "Selected work": heading "On the board this month.", intro: "Most of what we build ships under NDA. So instead of case studies, here's the board: what's in flight right now, names left off. Ask for a private walk-through and we'll show you more." Below it, a dark "Studio board" panel listing engagements as rows (project · sector · stage chip · progress rail · city), with counts ("4 in flight · 1 live"), an "Updated <month>" line, the note "Names and details withheld under NDA." and the button "Request a private walk-through". ⚠ All five rows are placeholders — see Section 1, items 21–22.
 - Trust band: four cards built from Section 1 facts (Registered company, location, Founded, Get in touch).
 - FAQ: heading "Asked on every call.", six questions. ⚠ Confirm these answers:
   1. What kinds of products do you build?
@@ -145,13 +148,23 @@ All copy below is already written as a draft in the brand voice. Mark each item 
 
 ### 4.3 About (`/about`)
 
-- Breadcrumb Home / About. Eyebrow "About [Company Name]".
-- Title: "A product engineering team from [State]."
-- Lede: "[Company Name] is a product-engineering studio founded in [Year] and based in [State], [Country]. We partner with founders and businesses that have a problem worth solving — and want a team that treats the outcome as its own."
-- Three meta cards: Founded, location, Registered company (from Section 1).
-- "What we believe": "Three principles we don't compromise on." with intro "We don't have a manifesto. We have these three lines, taped above the desk…" and cards: Solve the real problem, Ship something usable early, Write code people can own.
-- Then the shared Why, Trust band and Final CTA sections.
-- ⚠ There is no team section, founder story, headcount or photos. Decide whether About needs them. If yes, supply names, roles, short bios and headshots.
+Rebuilt as a five-part page. All copy below is new draft in the brand voice; facts are pulled from Section 1.
+
+- **Opening.** Breadcrumb Home / About. Title: "A small studio in [City]. Software you can run a business on." Lede: "[Company Name] started in [Year]. We design, build and look after mobile apps, web applications and secure digital systems for businesses in [City], across [State] and beyond — and we take on reliable data entry when the paperwork is the problem." Facts strip: Founded [Year] · Based in [City], [State] · We build: Mobile · Web · Systems · Data entry.
+- **"Why we started."** On the dark band: the thesis "We started this studio to be the other option." then three short columns, signed "— [Company Name], [City]":
+  - The problem — "Most businesses around us run on WhatsApp, spreadsheets and memory. It works — until the day it doesn't. And the software that could fix it usually comes from far away, priced for someone else, with nobody to call after launch."
+  - The other option — "A team nearby that listens first, builds only what's needed, and stays around to keep it running. Built in Erode, for the businesses around it — and for anyone further away who wants to be treated the same way."
+  - The honest bit — "We're a young studio, and we say so. What we lack in years we make up for in attention — a few projects at a time, senior people on each one, and code you own outright."
+  ⚠ Confirms "a few projects at a time" and "senior people on each one".
+- **"Three lines taped above the desk."** Intro: "We don't have a manifesto. We have these, and we test every engagement against them." The three principles are unchanged: Solve the real problem · Ship something usable early · Write code people can own.
+- **"What we build."** Intro: "Four things, done properly. If your problem doesn't fit one of them, we'll say so on the first call." A menu of four link rows, each with a one-liner and a "Replaces ·" tag:
+  - Mobile apps — "iOS and Android apps your staff and customers actually use — orders, bookings, field work, payments." Replaces: WhatsApp orders and notebooks → Services
+  - Web applications — "Dashboards, portals and admin systems that replace the spreadsheet — fast, secure, and editable by you." Replaces: Spreadsheets and email threads → Services
+  - Secure digital systems — "Roles, backups and sensible hosting, so the system still holds up when the business is three times the size." Replaces: Shared laptops and USB backups → Services
+  - Data entry services — "Paper, PDFs and legacy records digitised to an agreed checklist — verified, on schedule, ready to import." Replaces: Cupboards of paper → Contact
+- **"Who you'll work with."** Intro: "No account managers, no hand-offs. The people you meet on the first call are the people who build it." Four roles as a list: A lead who owns it ("One person accountable from discovery to handover. They run the weekly demo and they answer the phone."), Design ("Screens people understand without training. We design with your staff, not just for them."), Engineering ("Senior engineers who write code your future team can read — web, iOS and Android."), Data entry team ("A supervised team working to your checklist, with verification built into the process."). Beside it, a diagram: You → A lead who owns it → Design / Engineering / Data entry team, captioned "One line of contact. One team behind it." Closes with "We're hiring in [City]." → Careers. ⚠ Confirm this is how engagements are actually staffed, especially the data entry team.
+- Then the shared Trust band and Final CTA. The shared "Why teams choose us" grid no longer appears on About.
+- ⚠ Still no names, headcount or photos. If the company wants a real team section, supply names, roles, short bios and headshots and it will replace or extend "Who you'll work with".
 
 ### 4.4 Services hub (`/services`)
 
@@ -159,15 +172,16 @@ All copy below is already written as a draft in the brand voice. Mark each item 
 - Lede: "[Company Name] isn't a vendor you brief and chase. It's a small, senior product team that owns the build end-to-end…"
 - Three outcome bullets: "Faster time-to-market", "AI built in, not bolted on", "Senior team, total ownership".
 - Four stats: "6 Service areas", "3 Platforms (web · iOS · Android)", "[Year] Founded · [State]", "1 Accountable team".
+- "Why teams choose us" on this page is a comparison table — Typical agency · Body shop · Atmytech — with the six reasons as rows ("You talk to the people writing the code", "Discovery before any code is written", "One team owns the outcome, start to finish", "Code you own outright, documented and readable", "Something usable early, then improved with evidence", "A fixed quote and honest timelines up front") marked Yes / Sometimes / Rarely, and a closing note: "Generalisations, admittedly — there are good agencies and good contractors. This is the shape we've chosen, and we hold ourselves to it." ⚠ Confirm the marks for the agency and body-shop columns; they are the studio's generalisations. Other pages keep the plain six-reason list.
 - Animated hub with six satellite cards and status labels ("Shipping", "Live", "Beta soon", "Pilot live", "In design", "Active"). ⚠ These labels are decorative; confirm they do not read as false claims.
-- "Six service areas. One accountable team." grid, each with a description and four bullets:
+- "Six service areas. One accountable team." — an indexed hub: a sticky index of the six areas on the left, one block per area on the right, each with a description and four bullets:
   1. MVP Development
   2. Web Applications: bullets include "React / Laravel / Node". ⚠ Confirm the stack you want to advertise.
   3. Mobile Applications: bullets include "React Native + native". ⚠ Confirm.
   4. AI / ML & Chatbots: "Predictive analytics", "RAG & LLM assistants", "Support & conversion bots", "Production deployments".
   5. IoT & AR.
   6. Technology Consulting.
-- ⚠ Web Applications and Mobile Applications have no dedicated page. Their "Explore service" link only scrolls within this page. Decide whether they need their own pages like MVP and Consulting. If yes, supply copy for each.
+- ⚠ Web Applications and Mobile Applications have no dedicated page. In the hub their link reads "Talk to us about this" and goes to Contact; the other four link to their pages. Decide whether Web and Mobile need their own pages like MVP and Consulting. If yes, supply copy for each.
 
 ### 4.5 MVP Development (`/services/mvp-development`)
 
@@ -186,16 +200,17 @@ All copy below is already written as a draft in the brand voice. Mark each item 
 
 ### 4.7 Careers (`/careers`)
 
-- Title "Work where your code ships." and lede.
-- Three banner cards: Small & senior team, Real products real clients, Ownership from day one.
-- Open roles, all shown as "Full-time · [City] · Hybrid" and applying opens an email to the contact address with subject "Application: <role>": ⚠ confirm each
-  1. PHP / Laravel Developer (Engineering)
-  2. Frontend Engineer (React) (Engineering)
-  3. UI / UX Designer (Design)
-  4. Web Designer (Design)
-  Provide for each real opening: title, team, employment type, location and work mode, and whether applications go to the main email or a separate careers address.
-- "Don't see your role?" block with the contact email button.
-- ⚠ If there are no openings, say so and the list will be replaced with a "no open roles" message.
+Rebuilt for the candidate. The client-facing "Why teams choose us" and "Book a discovery call" sections no longer appear on this page. Open roles live in `src/data/roles.js` (edit there; the page, the count and the page title update).
+
+- **Opening.** Centred. Title: "Come build with us." Lede: "[Three] open roles in [City], hybrid, full-time. Small team, senior people, real products." Then the open roles as pill links (team · title →) straight to their entries, and a footnote "Apply by email · we read every one." ⚠ New headline and lede replace "Work where your code ships." — confirm; and "we read every one" is a promise.
+- **Open roles** (dark band). Intro: "All full-time and hybrid in [City]. Apply by email — each button drafts one with the role in the subject line; add your CV or portfolio and a line about what you'd like to work on." One column per role — team, title, a one-line description (⚠ draft, confirm each), type/location tags — with an "Apply for this role" button that opens an email with subject "Application: <role>":
+  1. Frontend Engineer (React) — "Build the web apps and admin dashboards our clients run their businesses on. React, clean components, and real users from the first month."
+  2. UI / UX Designer — "Design screens people understand without training — with the client's staff in the room, then alongside the engineers in the build."
+  3. Web Designer — "Marketing sites and product pages that load fast and read clearly. Design them, build them with the team, see them live."
+  If there are no openings, the list is replaced automatically with "No open roles right now…".
+- **"What it's like here."** Intro: "No ping-pong table copy. Four things that are actually true about the job." Four points: Real products, real clients · Small & senior · Ownership from day one ("…you demo it to the client every week…") · Hybrid, in Erode ("Part of the week together in Erode, the rest wherever you work best."). ⚠ Confirm the weekly client demo and the hybrid arrangement.
+- **"How hiring works here."** Intro: "Four emails, usually inside two weeks. This is roughly what the thread looks like from your side." Then an illustrative email thread — Day 1 "Write to us" (the candidate's application), Day 2 "A short call" ("Could you do half an hour on Thursday at 4? You'd be talking to the person you'd actually work with."), Day 5 "Talk through your work" ("bring something you've built… Nothing to prepare, no take-home."), Day 11 "A straight answer" (an offer). Side note: "And if it's a no, the last email still arrives — with the reason. We don't leave people waiting." Email address below. ⚠ The thread is illustrative but describes the real process — confirm the two-week pace, the half-hour call with the future colleague, no take-home task, and replying to everyone with a reason.
+- **"Don't see your role? Write anyway."** with the existing "If you'd rather solve the problem than wait for instructions…" copy, a "Write to us" email button and the address.
 
 ### 4.8 Contact (`/contact`)
 
@@ -251,8 +266,8 @@ Content or link problems that need a decision, separate from the placeholders:
 1. **Consulting heading count is wrong.** "Five areas of strategic depth." sits above six cards. Fix the number or drop a card.
 2. **Six dead footer links on every page.** LinkedIn, Twitter, Instagram, Privacy, Terms, Cookies all point to `#`.
 3. **Two footer links go to the same page.** "AI / ML & chatbots" and "Technology consulting" both open the consulting page.
-4. **Web and Mobile services have no pages.** Their links only jump to anchors on the Services hub.
-5. **Case-study cards use invented client stories.** They read as real ("fintech founder", "seed round", "southern India") and must be approved or replaced.
+4. **Web and Mobile services have no pages.** On the Services hub their blocks link to Contact ("Talk to us about this") instead; the hero satellites and footer still point at the `#web` / `#mobile` anchors, which now land on the right block.
+5. **Studio board rows are invented.** The old "Coming soon" case-study cards (with the "fintech founder" / "seed round" stories) have been replaced by the studio board, but its five rows in `src/data/board.js` are still placeholders and must be replaced with real, anonymised engagements before launch (Section 1, items 21–22).
 6. **Hero photo placeholder text is visible to visitors** on desktop and tablet widths.
 7. **Favicon is the wide logo lockup**, which will look wrong in the browser tab. Needs a square mark.
 8. **Copyright year is hard-coded to 2026.**

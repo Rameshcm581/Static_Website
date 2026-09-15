@@ -2,7 +2,7 @@
 import { Link } from 'react-router-dom';
 import Icon from '@components/Icon';
 import NewsletterForm from './NewsletterForm';
-import { COMPANY, MAILTO, TEL } from '@data/company';
+import { COMPANY, MAILTO } from '@data/company';
 import { ROUTES } from '@data/navigation';
 import './styles/Footer.css';
 
@@ -33,7 +33,7 @@ export default function Footer() {
         <div className="foot-grid">
           <div className="foot-brand">
             <div className="foot-brand__row">
-              <img className="logo-mark foot-logo" src={`${import.meta.env.BASE_URL}assets/images/logo-placeholder.svg`} alt={COMPANY.name} />
+              <img className="logo-mark foot-logo" src={`${import.meta.env.BASE_URL}assets/images/logo.png`} alt={COMPANY.name} />
             </div>
             <p>A product engineering and digital-transformation studio from {COMPANY.state}. We turn product ideas into digital solutions that solve.</p>
             <p className="foot-tag">Code your team can own.</p>
@@ -58,7 +58,7 @@ export default function Footer() {
             <h5>Get in touch</h5>
             <ul>
               <li><a href={MAILTO}>{COMPANY.email}</a></li>
-              <li><a href={TEL}>{COMPANY.phone}</a></li>
+              <li>{COMPANY.phone}</li>
               <li>{COMPANY.operationsCity}, {COMPANY.state}</li>
               <li>{COMPANY.registeredOffice}</li>
             </ul>

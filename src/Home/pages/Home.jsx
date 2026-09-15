@@ -13,8 +13,8 @@ import './styles/Home.css';
 
 export default function Home() {
   usePageMeta({
-    title: `${COMPANY.name} | Product Engineering & Digital Solutions Studio`,
-    description: `We turn product ideas into digital solutions that solve — MVP development, web & mobile apps, and technology consulting. Build with ${COMPANY.name}.`,
+    title: `${COMPANY.name} | Mobile Apps, Web Apps, Security & Data Entry`,
+    description: `${COMPANY.name} builds mobile apps, web applications, and secure digital systems for businesses in ${COMPANY.operationsCity} and beyond, with reliable data entry services.`,
   });
 
   return (

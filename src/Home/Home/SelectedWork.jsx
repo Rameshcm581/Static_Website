@@ -1,37 +1,74 @@
-// src/Home/Home/SelectedWork.jsx — case-study placeholders (work is under NDA)
+// src/Home/Home/SelectedWork.jsx — the studio board: what's in flight right now, names left off.
+// Rows come from src/data/board.js; the client edits that file, not this one.
 import SectionHead from '@components/SectionHead';
 import Button from '@components/Button';
+import Icon from '@components/Icon';
 import { ROUTES } from '@data/navigation';
+import { BOARD, STAGES } from '@data/board';
 import './styles/SelectedWork.css';
 
-const PLACEHOLDERS = [
-  { label: 'Case study · MVP', text: "A fintech founder's first product, built from sketch to v1.0 and used in a seed round." },
-  { label: 'Case study · AI', text: 'A custom chatbot replacing tier-1 support for a B2B SaaS team in southern India.' },
-  { label: 'Case study · Web', text: 'A multi-tenant SaaS platform with payments, dashboards, and a reporting engine.' },
-];
-
 export default function SelectedWork() {
+  const live = BOARD.items.filter((i) => i.stage === STAGES.length).length;
+  const inFlight = BOARD.items.length - live;
+
   return (
     <section id="work" className="cases">
       <div className="wrap">
         <SectionHead
           eyebrow="Selected work"
-          title={<>Quietly building<br /><span className="italic">behind the scenes.</span></>}
-          text="We're a young studio — and most of our client work is shipped under NDA. A public case-study page is coming soon. In the meantime, request a private walk-through and we'll share what we can."
+          title={<>On the board<br /><span className="italic">this month.</span></>}
+          text="Most of what we build ships under NDA. So instead of case studies, here's the board: what's in flight right now, names left off. Ask for a private walk-through and we'll show you more."
         />
-        <div className="placeholder-band">
-          <div className="ph-row">
-            {PLACEHOLDERS.map((item) => (
-              <div className="ph-card" key={item.label}>
-                <div className="ph-tag">Coming soon</div>
-                <div className="ph-co">{item.label}</div>
-                <p>{item.text}</p>
-              </div>
-            ))}
+
+        <div className="board" role="table" aria-label={`Studio board, updated ${BOARD.updated}`}>
+          <div className="board-bar">
+            <div className="board-title">
+              <span className="board-live" aria-hidden="true" />
+              Studio board
+            </div>
+            <div className="board-meta">
+              <span>{inFlight} in flight · {live} live</span>
+              <span>Updated {BOARD.updated}</span>
+            </div>
           </div>
-          <Button to={ROUTES.CONTACT} variant="primary" iconRight="arrow" className="ph-cta">
-            Request a private walk-through
-          </Button>
+
+          <div className="board-head" role="row">
+            <span role="columnheader">Project</span>
+            <span role="columnheader">Stage</span>
+            <span role="columnheader" className="c-progress">Progress</span>
+            <span role="columnheader">Location</span>
+          </div>
+
+          {BOARD.items.map((item, i) => {
+            const isLive = item.stage === STAGES.length;
+            return (
+              <div className={`board-row${isLive ? ' is-live' : ''}`} role="row" key={`${item.project}-${item.sector}`} style={{ '--i': i }}>
+                <div role="cell" className="c-project">
+                  <b>{item.project}</b>
+                  <span>{item.sector}</span>
+                </div>
+                <div role="cell" className="c-stage">
+                  <span className={`board-stage board-stage-${item.stage}`}>
+                    {isLive && <Icon name="check" size={11} stroke={2.6} />}
+                    {STAGES[item.stage - 1]}
+                  </span>
+                </div>
+                <div role="cell" className="c-progress" aria-label={`Step ${item.stage} of ${STAGES.length}`}>
+                  <span className="rail" aria-hidden="true">
+                    {STAGES.map((s, idx) => (
+                      <i key={s} className={idx < item.stage ? (idx === item.stage - 1 ? 'now' : 'done') : ''} />
+                    ))}
+                  </span>
+                </div>
+                <div role="cell" className="c-where">{item.where}</div>
+              </div>
+            );
+          })}
+
+          <div className="board-foot">
+            <span>Names and details withheld under NDA.</span>
+            <Button to={ROUTES.CONTACT} variant="outline-dark" size="sm" iconRight="arrowUR" className="board-cta">Request a private walk-through</Button>
+          </div>
         </div>
       </div>
     </section>

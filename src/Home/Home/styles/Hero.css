@@ -2,10 +2,11 @@
 .hero { padding: 170px 0 100px; position: relative; overflow: hidden; color: #F1E7D8; background: linear-gradient(140deg, #181222 0%, #1F2A3E 45%, #213049 100%); }
 .hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(50% 50% at 18% 22%, rgba(242,107,44,.22), transparent 70%), radial-gradient(45% 60% at 92% 78%, rgba(80,140,220,.18), transparent 70%), radial-gradient(70% 50% at 70% 0%, rgba(242,107,44,.10), transparent 70%); pointer-events: none; }
 .hero::after { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px); background-size: 64px 64px; mask-image: radial-gradient(70% 60% at 50% 40%, #000 0%, transparent 70%); -webkit-mask-image: radial-gradient(70% 60% at 50% 40%, #000 0%, transparent 70%); pointer-events: none; }
-.hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 80px; align-items: end; min-height: 78vh; position: relative; }
-.hero h1 { color: #FAF1E0; text-shadow: 0 2px 24px rgba(0,0,0,.25); }
-.hero p, .hero .lede { color: rgba(250,241,224,.82); }
-.hero h1 .accent { font-style: italic; background: linear-gradient(180deg, #F26B2C 0%, #F9A370 70%); -webkit-background-clip: text; background-clip: text; color: transparent; display: inline-block; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 80px; align-items: center; min-height: 78vh; position: relative; }
+.hero h1 { color: #FAF1E0; font-size: clamp(46px, 8.2vw, 100px); line-height: .98; letter-spacing: -.03em; text-wrap: balance; }
+.hero p { color: rgba(250,241,224,.82); }
+.hero h1 .accent { font-style: italic; color: #F7803F; letter-spacing: -.02em; }
+.hero ::selection { background: rgba(242,107,44,.55); color: #FFF7EA; }
 .hero-meta { display: flex; align-items: center; gap: 14px; margin-bottom: 34px; }
 .pill { display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px; border-radius: 999px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); font-size: 12px; letter-spacing: .05em; color: rgba(250,241,224,.85); backdrop-filter: blur(10px); }
 .pill .dot { width: 6px; height: 6px; border-radius: 50%; background: #F26B2C; box-shadow: 0 0 0 4px rgba(242,107,44,.22); flex-shrink: 0; }
@@ -14,25 +15,68 @@
 .hero .btn-ghost:hover { background: rgba(255,255,255,.12); }
 .hero .btn-primary { background: #F26B2C; color: #1A1410; box-shadow: 0 1px 0 rgba(255,255,255,.18) inset, 0 14px 30px -10px rgba(242,107,44,.55); }
 .hero .btn-primary:hover { background: #FF7A3A; }
-.hero-lede { margin: 28px 0 0; max-width: 520px; }
+.hero .hero-lede { margin: 30px 0 0; max-width: 50ch; font-family: var(--sans); font-size: clamp(16px, 1.25vw, 18px); line-height: 1.6; color: rgba(250,241,224,.78); }
+.hero-lede strong { color: #FAF1E0; font-weight: 600; }
 .hero-meta-row { display: flex; gap: 32px; margin-top: 56px; align-items: center; flex-wrap: wrap; }
 .hero-meta-row .item { font-size: 13px; color: rgba(250,241,224,.6); }
 .hero-meta-row .item b { display: block; font-family: var(--serif); font-size: 28px; font-weight: 500; color: #FAF1E0; line-height: 1; }
 
-/* Right side composition */
-.stage { position: relative; height: 620px; }
-.stage .placeholder { position: absolute; inset: 0; border-radius: 18px; background: linear-gradient(160deg, rgba(255,255,255,.08), rgba(255,255,255,.02)); border: 1px solid rgba(255,255,255,.10); overflow: hidden; backdrop-filter: blur(6px); }
-.stage .placeholder::before { content: ""; position: absolute; inset: 0; background: radial-gradient(50% 50% at 30% 25%, rgba(242,107,44,.30), transparent 70%), radial-gradient(50% 50% at 80% 80%, rgba(80,140,220,.25), transparent 70%); opacity: .85; }
-.stage .placeholder::after { content: "TEAM PHOTO · PLACEHOLDER"; position: absolute; left: 18px; bottom: 14px; font-family: var(--mono); font-size: 10px; letter-spacing: .18em; color: rgba(255,255,255,.45); }
+/* Right side composition: build-tracker phone on orbit rings, the four cards pinned to it.
+   The stage is a size container. Below 700px wide the cards form one column beside the phone;
+   from 700px they alternate either side. Sizes are shared via custom properties in cqw so they
+   resolve against the stage in both axes. */
+.stage { position: relative; height: 680px; min-width: 0; align-self: center; container-type: inline-size;
+  --phone-w: clamp(236px, 46cqw, 256px); --card-w: clamp(196px, 44cqw, 240px); --overlap: 20px;
+  --group-w: calc(var(--phone-w) + var(--card-w) - var(--overlap));
+  --phone-top: calc(50% - var(--phone-w) * 1.0703);           /* 548 / 256 / 2 */
+  --phone-cx: calc(50% - (var(--card-w) - var(--overlap)) / 2); }
+.stage-rings { position: absolute; inset: -40px; pointer-events: none;
+  background:
+    radial-gradient(38% 34% at var(--phone-cx) 50%, rgba(242,107,44,.28), transparent 72%),
+    repeating-radial-gradient(circle at var(--phone-cx) 50%, rgba(250,241,224,.11) 0 1px, transparent 1px 74px);
+  mask-image: radial-gradient(60% 58% at var(--phone-cx) 50%, #000 30%, transparent 100%);
+  -webkit-mask-image: radial-gradient(60% 58% at var(--phone-cx) 50%, #000 30%, transparent 100%);
+  animation: rings-in 1.6s cubic-bezier(.16,1,.3,1) both; }
+@keyframes rings-in { from { opacity: 0; transform: scale(.92); } to { opacity: 1; transform: none; } }
 
+/* narrow stage: phone left, cards in a centred column overlapping its right bezel */
+.stage .phone-wrap { position: absolute; top: var(--phone-top); width: var(--phone-w); left: calc(50% - var(--group-w) / 2); }
+.stage-cards { position: absolute; top: 0; bottom: 0; width: var(--card-w); left: calc(50% - var(--group-w) / 2 + var(--phone-w) - var(--overlap));
+  display: flex; flex-direction: column; justify-content: center; gap: 14px; }
+.stage .float-card { position: relative; width: 100%; padding: 14px 16px; }
+
+/* wide stage: phone centred, cards alternate either side */
+@container (min-width: 700px) {
+  .stage { --phone-cx: 50%; }
+  .stage .phone-wrap { left: calc(50% - var(--phone-w) / 2); }
+  .stage-cards { display: contents; }
+  .stage .float-card { position: absolute; width: var(--card-w); padding: 16px 18px; }
+  .stage .fc-1, .stage .fc-3 { left: calc(50% - var(--phone-w) / 2 - var(--card-w) + var(--overlap)); }
+  .stage .fc-2, .stage .fc-4 { right: calc(50% - var(--phone-w) / 2 - var(--card-w) + var(--overlap)); }
+  .stage .fc-1 { top: calc(var(--phone-top) + 24px); }
+  .stage .fc-2 { top: calc(var(--phone-top) + 134px); }
+  .stage .fc-3 { top: calc(var(--phone-top) + 302px); }
+  .stage .fc-4 { top: calc(var(--phone-top) + 412px); }
+}
+
+@media (max-width: 980px) and (min-width: 641px) {
+  .br-lg { display: none; }
+}
 @media (max-width: 980px) {
-  .hero-grid { grid-template-columns: 1fr; gap: 60px; }
-  .stage { height: 480px; }
+  .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 60px; }
+  .stage { max-width: 720px; width: 100%; margin: 0 auto; }
 }
 @media (max-width: 640px) {
   .hero { padding: 130px 0 70px; }
   .hero-grid { min-height: auto; gap: 40px; }
   .hero-meta-row { gap: 20px 28px; margin-top: 40px; }
-  .stage { height: auto; display: flex; flex-direction: column; gap: 12px; }
-  .stage .placeholder { display: none; }
+  .stage { height: auto; display: flex; flex-direction: column; gap: 22px; max-width: none; --phone-cx: 50%; }
+  .stage-rings { inset: -20px -20px 40% -20px; }
+  .stage .phone-wrap { position: static; width: 236px; margin: 0 auto; }
+  .stage-cards { position: static; width: auto; flex-direction: row; justify-content: flex-start; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 -20px; padding: 6px 20px 14px; scrollbar-width: none; min-width: 0; }
+  .stage-cards::-webkit-scrollbar { display: none; }
+  .stage .float-card { position: static; width: auto; flex: 0 0 82%; max-width: 300px; scroll-snap-align: start; padding: 16px 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .stage-rings { animation: none; }
 }

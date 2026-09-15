@@ -1,0 +1,38 @@
+/* About/About/styles/Principles.css — three verbs, huge */
+.principles { padding: 130px 0 140px; background: var(--paper); border-bottom: 1px solid var(--line); overflow: clip; }
+.principles-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 60px; margin-bottom: 64px; }
+.principles-head h2 { max-width: 640px; text-wrap: balance; }
+.principles-head p { max-width: 380px; margin: 0 0 6px; font-size: 16px; line-height: 1.6; color: var(--ink-2); }
+
+.verbs { list-style: none; margin: 0; padding: 40px 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 40px; border-top: 1.5px solid var(--ink); }
+.verb { min-width: 0; animation: verb-in 1s cubic-bezier(.16,1,.3,1) both; animation-delay: calc(.1s + var(--i) * .14s); }
+.verb h3 { display: flex; flex-direction: column; }
+.verb-word { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: clamp(84px, 10.5vw, 156px); line-height: .82; letter-spacing: -.045em; color: var(--moss); margin-left: -.03em; }
+.verb-word::after { content: "."; color: var(--ink); }
+.verb-rest { display: block; margin-top: 22px; font-family: var(--serif); font-weight: 500; font-size: clamp(24px, 2.2vw, 32px); line-height: 1.1; letter-spacing: -.015em; color: var(--ink); text-wrap: balance; }
+.verb p { margin: 16px 0 0; max-width: 34ch; font-size: 15.5px; line-height: 1.6; color: var(--ink-2); }
+
+@keyframes verb-in { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+@supports (animation-timeline: view()) {
+  .verb { animation-timeline: view(); animation-delay: 0s; animation-range: entry calc(5% + var(--i) * 8%) entry calc(45% + var(--i) * 8%); }
+}
+
+@media (max-width: 980px) {
+  .principles-head { flex-direction: column; align-items: flex-start; gap: 20px; margin-bottom: 44px; }
+  .principles-head p { max-width: 560px; }
+  .verbs { grid-template-columns: 1fr; gap: 0; padding-top: 0; }
+  .verb { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 0 28px; align-items: end; padding: 34px 0 38px; border-bottom: 1px solid var(--line); }
+  .verb:last-child { border-bottom: 0; padding-bottom: 0; }
+  .verb h3 { grid-column: 1; }
+  .verb p { grid-column: 2; margin: 0 0 6px; max-width: none; }
+  .verb-word { font-size: clamp(72px, 12vw, 120px); }
+  .verb-rest { margin-top: 14px; }
+}
+@media (max-width: 640px) {
+  .principles { padding: 80px 0 88px; }
+  .verb { grid-template-columns: 1fr; gap: 12px 0; padding: 28px 0 32px; }
+  .verb h3, .verb p { grid-column: 1; }
+  .verb p { margin: 0; }
+  .verb-word { font-size: clamp(64px, 20vw, 88px); }
+}
+@media (prefers-reduced-motion: reduce) { .verb { animation: none; } }

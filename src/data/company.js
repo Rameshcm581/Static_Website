@@ -2,25 +2,24 @@
 // Every value below is a placeholder: replace them here and the whole site updates.
 
 export const COMPANY = {
-  name: '[Company Name]',
+  name: 'Atmytech Software Solutions',
   initials: 'CN',
   legalName: '[Legal Entity Name]',
   shortLegalName: '[Legal Entity Name]',
   registrationLabel: 'CIN',
   registrationNumber: '[Registration No.]',
   registrar: '[Registrar]',
-  foundedYear: '[Year]',
+  foundedYear: '2024',
   incorporatedOn: '[Date]',
   status: 'Active',
-  email: 'hello@example.com',
-  phone: '+91 00000 00000',
-  operationsCity: '[City]',
+  email: 'atmytechsoftwaresolutions@gmail.com',
+  phone: '+91 63699 20177',
+  operationsCity: 'Erode',
   registeredOffice: '[Registered Office]',
-  state: '[State]',
-  country: '[Country]',
+  state: 'Tamil Nadu',
+  country: 'India',
   website: 'https://example.com/',
   copyrightYear: '2026',
 };
 
 export const MAILTO = `mailto:${COMPANY.email}`;
-export const TEL = `tel:${COMPANY.phone.replace(/[^\d+]/g, '')}`;

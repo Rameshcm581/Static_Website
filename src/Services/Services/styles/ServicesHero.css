@@ -11,22 +11,46 @@
 .sv-outcomes { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
 .sv-outcome { display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 999px; border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.05); font-size: 13.5px; color: rgba(250,241,224,.88); backdrop-filter: blur(8px); }
 .sv-outcome .d { width: 6px; height: 6px; border-radius: 50%; background: #F26B2C; box-shadow: 0 0 0 4px rgba(242,107,44,.22); }
-.sv-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 48px; padding-top: 34px; border-top: 1px solid rgba(255,255,255,.10); max-width: 600px; }
-.sv-stat .num { font-family: var(--serif); font-size: 42px; font-weight: 500; line-height: 1; letter-spacing: -.02em; color: #FAF1E0; }
-.sv-stat .lbl { font-family: var(--mono); font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; color: rgba(250,241,224,.55); margin-top: 6px; }
+/* stats: a subgrid so the numbers, labels and details each share a baseline across all four */
+.sv-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: auto auto auto; column-gap: 0; margin-top: 48px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,.10); max-width: 660px; }
+.sv-stat { display: grid; grid-row: span 3; grid-template-rows: subgrid; align-content: start; padding-right: 16px; }
+.sv-stat + .sv-stat { padding-left: 20px; border-left: 1px solid rgba(255,255,255,.10); }
+.sv-stat .num { font-family: var(--serif); font-size: 42px; font-weight: 500; line-height: 1; letter-spacing: -.02em; color: #FAF1E0; font-variant-numeric: tabular-nums; }
+.sv-stat .lbl { font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: rgba(250,241,224,.7); margin-top: 12px; white-space: nowrap; }
+.sv-stat .det { font-size: 12.5px; line-height: 1.4; color: rgba(250,241,224,.55); margin-top: 6px; }
 
-.sv-anim { position: relative; height: 560px; width: 100%; max-width: 520px; margin-left: auto; }
-.sv-anim svg.connectors { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .6; }
-.sv-anim svg.connectors line { stroke: rgba(242,107,44,.55); stroke-width: 1; stroke-dasharray: 4 5; animation: dash 6s linear infinite; }
-@keyframes dash { 0% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: -90; } }
-.sv-hub { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 148px; height: 148px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #F58352 0%, #D9551A 60%, #8B3408 100%); box-shadow: 0 0 0 1px rgba(255,255,255,.10) inset, 0 24px 60px -10px rgba(242,107,44,.45), 0 0 80px rgba(242,107,44,.25); display: flex; flex-direction: column; align-items: center; justify-content: center; color: #1A1410; z-index: 2; }
+/* The orbit: six cards ride one elliptical loop around the hub, each tethered to it by a spoke.
+   --orbit is a registered angle the animation sweeps through a full turn; it inherits, so one animation
+   per orbiter drives both its spoke and its card from the same position. Radii are container units. */
+@property --orbit { syntax: '<angle>'; inherits: true; initial-value: 0deg; }
+.sv-anim { position: relative; height: 560px; width: 100%; max-width: 520px; margin-left: auto; container-type: size; --rx: 38cqw; --ry: 40cqh; --hub-r: 74px; }
+.sv-hub { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: calc(var(--hub-r) * 2); height: calc(var(--hub-r) * 2); border-radius: 50%; background: radial-gradient(circle at 30% 30%, #F58352 0%, #D9551A 60%, #8B3408 100%); box-shadow: 0 0 0 1px rgba(255,255,255,.10) inset, 0 24px 60px -10px rgba(242,107,44,.45), 0 0 80px rgba(242,107,44,.25); display: flex; flex-direction: column; align-items: center; justify-content: center; color: #1A1410; z-index: 100; }
 .sv-hub .ico { font-size: 22px; opacity: .85; display: inline-flex; }
 .sv-hub .count { font-family: var(--serif); font-size: 38px; font-weight: 600; line-height: 1; letter-spacing: -.02em; margin-top: 6px; }
 .sv-hub .lbl { font-family: var(--mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; margin-top: 4px; opacity: .75; }
 .sv-hub::before { content: ""; position: absolute; inset: -12px; border-radius: 50%; border: 1px solid rgba(242,107,44,.25); animation: pulse 3.6s ease-out infinite; }
 .sv-hub::after { content: ""; position: absolute; inset: -22px; border-radius: 50%; border: 1px solid rgba(242,107,44,.15); animation: pulse 3.6s ease-out infinite; animation-delay: 1.8s; }
 @keyframes pulse { 0% { transform: scale(1); opacity: .7; } 100% { transform: scale(1.45); opacity: 0; } }
-.sv-sat { position: absolute; width: 204px; background: rgba(28,22,18,.62); backdrop-filter: blur(22px) saturate(140%); -webkit-backdrop-filter: blur(22px) saturate(140%); border: 1px solid rgba(255,255,255,.10); border-radius: 14px; padding: 14px; box-shadow: 0 20px 50px -16px rgba(0,0,0,.5); color: #FAF1E0; animation: satFloat 7s ease-in-out infinite; }
+
+.sv-orbiter { --orbit: 0deg; --t: calc(var(--a) + var(--orbit));
+  --x: calc(cos(var(--t)) * var(--rx)); --y: calc(sin(var(--t)) * var(--ry));
+  --depth: calc((sin(var(--t)) + 1) / 2);                       /* 0 at the back (top), 1 at the front (bottom) */
+  position: absolute; left: 50%; top: 50%; width: 0; height: 0;
+  z-index: calc(100 + round(sin(var(--t)) * 60)); animation: orbit 42s linear infinite; }
+.sv-anim:hover .sv-orbiter, .sv-anim:focus-within .sv-orbiter { animation-play-state: paused; }
+@keyframes orbit { to { --orbit: 360deg; } }
+
+/* spoke: from the hub's rim to the card's centre, dashes flowing outward */
+.sv-spoke { position: absolute; left: 0; top: 0; height: 1px; width: calc(hypot(var(--x), var(--y)) - var(--hub-r));
+  transform-origin: 0 50%; transform: rotate(atan2(var(--y), var(--x))) translateX(var(--hub-r));
+  background: repeating-linear-gradient(90deg, rgba(247,128,63,.85) 0 4px, transparent 4px 10px);
+  opacity: calc(.55 + .45 * var(--depth)); animation: flow 1.1s linear infinite; }
+@keyframes flow { to { background-position: 10px 0; } }
+
+.sv-sat { position: absolute; left: 0; top: 0; width: 39cqw; max-width: 204px;
+  transform: translate(-50%, -50%) translate(var(--x), var(--y)) scale(calc(.84 + .16 * var(--depth)));
+  opacity: calc(.68 + .32 * var(--depth));
+  background: rgba(28,22,18,.66); backdrop-filter: blur(22px) saturate(140%); -webkit-backdrop-filter: blur(22px) saturate(140%); border: 1px solid rgba(255,255,255,.10); border-radius: 14px; padding: 14px; box-shadow: 0 20px 50px -16px rgba(0,0,0,.5); color: #FAF1E0; will-change: transform; }
 .sv-sat .row { display: flex; gap: 10px; align-items: flex-start; }
 .sv-sat .sat-body { flex: 1; min-width: 0; }
 .sv-sat .sat-ico { width: 32px; height: 32px; border-radius: 9px; display: grid; place-items: center; background: rgba(242,107,44,.18); color: #FFB37A; flex-shrink: 0; }
@@ -38,29 +62,31 @@
 .sv-sat .stag.done { background: rgba(46,184,114,.18); color: #7BD9A6; }
 .sv-sat .stag.prog { background: rgba(242,107,44,.20); color: #FFB37A; }
 .sv-sat .stag.sched { background: rgba(80,140,220,.20); color: #9EC4FF; }
-.sat-0 { top: 0; left: 6%; animation-delay: 0s; }
-.sat-1 { top: 0; right: 0; animation-delay: .6s; }
-.sat-2 { top: 50%; right: -2%; transform: translateY(-50%); animation: satFloatY 7s ease-in-out infinite; animation-delay: 1.2s; }
-.sat-3 { bottom: 0; right: 0; animation-delay: 1.8s; }
-.sat-4 { bottom: 0; left: 6%; animation-delay: 2.4s; }
-.sat-5 { top: 50%; left: -2%; transform: translateY(-50%); animation: satFloatY 7s ease-in-out infinite; animation-delay: 3s; }
-@keyframes satFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-@keyframes satFloatY { 0%, 100% { transform: translateY(-50%); } 50% { transform: translateY(calc(-50% - 8px)); } }
 
-@media (max-width: 980px) {
+@media (prefers-reduced-motion: reduce) {
+  .sv-orbiter, .sv-spoke, .sv-hub::before, .sv-hub::after { animation: none; }
+}
+
+@media (max-width: 1180px) {
   .sv-hero .grid { grid-template-columns: 1fr; gap: 48px; }
   .sv-anim { margin: 0 auto; height: 520px; }
-  .sv-stats { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 980px) {
+  .sv-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sv-stat:nth-child(3) { padding-left: 0; border-left: 0; }
+  .sv-stat:nth-child(n+3) { margin-top: 30px; }
 }
 @media (max-width: 640px) {
   .sv-hero { padding: 130px 0 70px; }
   .sv-hero h1 { font-size: clamp(38px, 11vw, 56px); }
-  .sv-anim { height: auto; max-width: none; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .sv-anim svg.connectors { display: none; }
+  .sv-anim { height: auto; max-width: none; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; container-type: normal; }
   .sv-hub { position: relative; left: auto; top: auto; transform: none; grid-column: 1 / -1; margin: 0 auto 12px; width: 120px; height: 120px; }
-  .sv-sat, .sat-2, .sat-5 { position: static; width: auto; animation: none; transform: none; }
+  .sv-orbiter { position: static; width: auto; height: auto; animation: none; }
+  .sv-spoke { display: none; }
+  .sv-sat { position: static; width: auto; max-width: none; transform: none; opacity: 1; }
 }
 @media (max-width: 480px) {
   .sv-anim { grid-template-columns: 1fr; }
-  .sv-stats { gap: 16px; }
+  .sv-stat:nth-child(n+3) { margin-top: 24px; }
+  .sv-stat .num { font-size: 36px; }
 }

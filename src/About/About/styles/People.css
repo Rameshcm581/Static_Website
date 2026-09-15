@@ -1,0 +1,65 @@
+/* About/About/styles/People.css — copy left, org diagram right */
+.people { padding: 130px 0 120px; background: var(--paper); }
+.people-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 72px 96px; align-items: start; }
+.people-copy h2 .italic { color: var(--moss); }
+.people-intro { margin: 26px 0 0; max-width: 46ch; font-size: 17px; line-height: 1.6; color: var(--ink-2); }
+
+.people-roles { margin: 44px 0 0; border-top: 1.5px solid var(--ink); }
+.people-roles div { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 0 24px; padding: 20px 0 22px; border-bottom: 1px solid var(--line); }
+.people-roles dt { font-family: var(--serif); font-weight: 500; font-size: 21px; letter-spacing: -.01em; line-height: 1.15; color: var(--ink); }
+.people-roles dd { margin: 0; font-size: 15px; line-height: 1.6; color: var(--ink-2); }
+
+/* the diagram */
+.org { margin: 0; position: sticky; top: 140px; display: flex; flex-direction: column; align-items: center; padding: 44px 28px 32px; border-radius: 24px; background: var(--bg); border: 1px solid var(--line); }
+.org-node { font-family: var(--serif); font-weight: 500; font-size: 18px; letter-spacing: -.01em; line-height: 1; padding: 14px 20px; border-radius: 999px; border: 1px solid var(--ink); color: var(--ink); background: var(--paper); white-space: nowrap;
+  animation: node-in .8s cubic-bezier(.16,1,.3,1) both; }
+.org-node--you { background: var(--moss); border-color: var(--moss); color: #1A1410; font-size: 20px; padding: 16px 28px; }
+.org-node--lead { background: var(--ink); border-color: var(--ink); color: #FAF1E0; animation-delay: .25s; }
+.org-line { display: block; width: 1px; height: 34px; background: var(--ink); transform-origin: top; animation: line-draw .5s cubic-bezier(.16,1,.3,1) both; }
+.org-line:nth-of-type(1) { animation-delay: .1s; }
+.org-line:nth-of-type(2) { animation-delay: .4s; }
+.org-fork { position: relative; width: 66.6%; height: 1px; background: var(--ink); transform-origin: center; animation: fork-draw .5s cubic-bezier(.16,1,.3,1) .55s both; }
+.org-row { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; width: 100%; padding-top: 26px; }
+.org-row::before { content: ""; position: absolute; top: 0; left: 16.66%; right: 16.66%; height: 26px; pointer-events: none;
+  background: linear-gradient(var(--ink), var(--ink)) left top / 1px 100% no-repeat, linear-gradient(var(--ink), var(--ink)) center top / 1px 100% no-repeat, linear-gradient(var(--ink), var(--ink)) right top / 1px 100% no-repeat; }
+.org-row .org-node { justify-self: center; font-size: 15px; padding: 12px 16px; animation-delay: .75s; }
+.org-row .org-node:nth-child(2) { animation-delay: .85s; }
+.org-row .org-node:nth-child(3) { animation-delay: .95s; }
+.org figcaption { margin-top: 30px; font-family: var(--mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #4E5D78; text-align: center; }
+
+.people-foot { grid-column: 1 / -1; display: flex; align-items: center; gap: 22px; padding-top: 28px; border-top: 1px solid var(--line); }
+.people-foot p { margin: 0; font-family: var(--serif); font-style: italic; font-size: 22px; color: var(--ink-2); }
+
+@keyframes node-in { from { opacity: 0; transform: translateY(8px) scale(.96); } to { opacity: 1; transform: none; } }
+@keyframes line-draw { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes fork-draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@supports (animation-timeline: view()) {
+  .org-node, .org-line, .org-fork { animation-timeline: view(); animation-delay: 0s; }
+  .org-node--you { animation-range: entry 10% entry 35%; }
+  .org-line:nth-of-type(1) { animation-range: entry 25% entry 45%; }
+  .org-node--lead { animation-range: entry 35% entry 55%; }
+  .org-line:nth-of-type(2) { animation-range: entry 45% entry 60%; }
+  .org-fork { animation-range: entry 55% entry 70%; }
+  .org-row .org-node { animation-range: entry 60% entry 85%; }
+}
+
+@media (max-width: 1100px) {
+  .people-grid { gap: 56px 56px; }
+  .org-row .org-node { font-size: 13.5px; padding: 11px 12px; white-space: normal; text-align: center; line-height: 1.15; }
+}
+@media (max-width: 980px) {
+  .people-grid { grid-template-columns: 1fr; gap: 48px; }
+  .org { position: static; max-width: 560px; width: 100%; margin: 0 auto; }
+  .people-roles div { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); }
+}
+@media (max-width: 640px) {
+  .people { padding: 80px 0 72px; }
+  .people-roles div { grid-template-columns: 1fr; gap: 6px; padding: 16px 0 18px; }
+  .org { padding: 32px 16px 24px; border-radius: 18px; }
+  .org-node--you { font-size: 18px; padding: 14px 24px; }
+  .org-node--lead { font-size: 16px; }
+  .org-row { gap: 8px; }
+  .org-row .org-node { font-size: 12px; padding: 10px 8px; }
+  .people-foot { flex-direction: column; align-items: flex-start; gap: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { .org-node, .org-line, .org-fork { animation: none; } }

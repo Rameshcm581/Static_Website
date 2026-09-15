@@ -1,45 +1,42 @@
-// src/Careers/Careers/Roles.jsx — open roles list + speculative application
-import SectionHead from '@components/SectionHead';
-import Button from '@components/Button';
+// src/Careers/Careers/Roles.jsx — open roles as three tall columns on the dark band, Apply pinned to the foot of each
 import Icon from '@components/Icon';
 import { COMPANY, MAILTO } from '@data/company';
+import { ROLES, roleId } from '@data/roles';
 import './styles/Roles.css';
-
-const ROLES = [
-  { team: 'Engineering', title: 'PHP / Laravel Developer', type: 'Full-time', location: `${COMPANY.operationsCity} · Hybrid` },
-  { team: 'Engineering', title: 'Frontend Engineer (React)', type: 'Full-time', location: `${COMPANY.operationsCity} · Hybrid` },
-  { team: 'Design', title: 'UI / UX Designer', type: 'Full-time', location: `${COMPANY.operationsCity} · Hybrid` },
-  { team: 'Design', title: 'Web Designer', type: 'Full-time', location: `${COMPANY.operationsCity} · Hybrid` },
-];
 
 export default function Roles() {
   return (
-    <section className="roles">
+    <section id="roles" className="roles">
       <div className="wrap">
-        <SectionHead
-          eyebrow="Open roles"
-          title={<>Where your code<br /><span className="italic">actually ships.</span></>}
-          text="We're a small team building real products for real clients. That means ownership from day one, short feedback loops, and the chance to see your work in users' hands quickly."
-        />
-        <div className="roles-list">
-          {ROLES.map((role) => (
-            <div className="role" key={role.title}>
-              <div className="role-team">{role.team}</div>
-              <div className="role-title">{role.title}</div>
-              <div className="role-meta"><span>{role.type}</span><span>·</span><span>{role.location}</span></div>
-              <a href={`${MAILTO}?subject=${encodeURIComponent(`Application: ${role.title}`)}`} className="role-cta">
-                Apply <Icon name="arrowUR" size={14} />
-              </a>
-            </div>
-          ))}
+        <div className="roles-head">
+          <h2>Open <span className="italic">roles.</span></h2>
+          <p>
+            All full-time and hybrid in {COMPANY.operationsCity}. Apply by email — each button drafts one with
+            the role in the subject line; add your CV or portfolio and a line about what you&apos;d like to work on.
+          </p>
         </div>
-        <div className="careers-apply">
-          <div>
-            <h3>Don&apos;t see your role?</h3>
-            <p>If you&apos;d rather solve the problem than wait for instructions, write anyway. Send your resume and a line about what you&apos;d like to work on.</p>
-          </div>
-          <Button href={MAILTO} variant="accent" iconLeft="mail">{COMPANY.email}</Button>
-        </div>
+
+        {ROLES.length ? (
+          <ul className="posts" style={{ '--n': ROLES.length }}>
+            {ROLES.map((role, i) => (
+              <li className="post" id={roleId(role)} key={role.title} style={{ '--i': i }}>
+                <span className="post-team">{role.team}</span>
+                <h3>{role.title}</h3>
+                <p>{role.text}</p>
+                <div className="post-meta"><span>{role.type}</span><span>{role.location}</span></div>
+                <a
+                  className="post-apply"
+                  href={`${MAILTO}?subject=${encodeURIComponent(`Application: ${role.title}`)}`}
+                  aria-label={`Apply for ${role.title} by email`}
+                >
+                  Apply for this role <Icon name="arrowUR" size={15} />
+                </a>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="roles-empty">No open roles right now. If you&apos;d like to work with us anyway, write to us below.</p>
+        )}
       </div>
     </section>
   );

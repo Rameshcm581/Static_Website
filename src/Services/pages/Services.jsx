@@ -1,11 +1,11 @@
 // src/Services/pages/Services.jsx — services hub
 import usePageMeta from '@hooks/usePageMeta';
 import { COMPANY } from '@data/company';
-import WhySection from '@components/WhySection';
 import ProcessSection from '@components/ProcessSection';
 import FinalCta from '@components/FinalCta';
 import ServicesHero from '@/Services/Services/ServicesHero';
 import ServiceGrid from '@/Services/Services/ServiceGrid';
+import WhyCompare from '@/Services/Services/WhyCompare';
 import './styles/Services.css';
 
 export default function Services() {
@@ -18,7 +18,7 @@ export default function Services() {
     <div className="services-page">
       <ServicesHero />
       <ServiceGrid />
-      <WhySection />
+      <WhyCompare />
       <ProcessSection />
       <FinalCta />
     </div>

@@ -1,38 +1,27 @@
-// src/Careers/pages/Careers.jsx
+// src/Careers/pages/Careers.jsx — written for the candidate: opening → open roles → what it's like → how hiring works → write anyway
 import usePageMeta from '@hooks/usePageMeta';
 import { COMPANY } from '@data/company';
-import PageBanner from '@components/PageBanner';
-import WhySection from '@components/WhySection';
-import FinalCta from '@components/FinalCta';
+import { ROLES } from '@data/roles';
+import Opening from '@/Careers/Careers/Opening';
 import Roles from '@/Careers/Careers/Roles';
-import { ROUTES } from '@data/navigation';
+import Life from '@/Careers/Careers/Life';
+import Hiring from '@/Careers/Careers/Hiring';
+import WriteAnyway from '@/Careers/Careers/WriteAnyway';
 import './styles/Careers.css';
-
-const META = [
-  { icon: 'users', title: 'Small & senior team', sub: 'Decisions are fast and quality stays high.' },
-  { icon: 'layers', title: 'Real products, real clients', sub: 'Web, mobile, AI. Real launches, not internal demos.' },
-  { icon: 'compass', title: 'Ownership from day one', sub: 'You ship what you build — and you stay close to the customer.' },
-];
 
 export default function Careers() {
   usePageMeta({
-    title: `Careers at ${COMPANY.name} | Build Products That Ship`,
-    description: `Join a small, senior product team in ${COMPANY.state}. Open roles in engineering, UI/UX, and frontend. See current openings.`,
+    title: `Careers at ${COMPANY.name} | ${ROLES.length} open roles in ${COMPANY.operationsCity}`,
+    description: `Join a small, senior software team in ${COMPANY.operationsCity}, ${COMPANY.state}. Open roles in engineering and design — hybrid, full-time, real products for real clients.`,
   });
 
   return (
     <div className="careers-page">
-      <PageBanner
-        crumbs={[{ label: 'Home', to: ROUTES.HOME }, { label: 'Careers' }]}
-        eyebrow="Careers"
-        title="Work where"
-        accent="your code ships."
-        lede="We're a small team that builds real products for real clients. That means ownership from day one, short feedback loops, and the chance to see your work in users' hands — quickly."
-        meta={META}
-      />
+      <Opening />
       <Roles />
-      <WhySection />
-      <FinalCta />
+      <Life />
+      <Hiring />
+      <WriteAnyway />
     </div>
   );
 }

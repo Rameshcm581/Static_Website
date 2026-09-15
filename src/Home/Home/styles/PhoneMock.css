@@ -1,0 +1,70 @@
+/* Home/Home/styles/PhoneMock.css — the hero's focal object */
+.phone-wrap { animation: phone-rise 1.1s cubic-bezier(.16, 1, .3, 1) both; }
+.phone {
+  aspect-ratio: 256 / 548;
+  padding: 9px;
+  border-radius: 44px;
+  background: linear-gradient(160deg, #1B2233 0%, #0E121C 100%);
+  border: 1px solid rgba(250, 241, 224, .18);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, .10) inset,
+    0 0 0 5px rgba(255, 255, 255, .035),
+    0 40px 90px -24px rgba(0, 0, 0, .7),
+    0 18px 40px -20px rgba(242, 107, 44, .35);
+  animation: phone-drift 10s ease-in-out 1.4s infinite;
+}
+.phone-screen {
+  position: relative;
+  height: 100%;
+  border-radius: 36px;
+  background: #FBF8F1;
+  color: #1F3354;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 0 16px 14px;
+  font-family: var(--sans);
+}
+
+/* status bar + island */
+.phone-status { display: flex; justify-content: space-between; align-items: center; height: 40px; font-size: 11px; font-weight: 600; letter-spacing: .02em; color: #1F3354; }
+.phone-signal { display: inline-flex; align-items: flex-end; gap: 2px; height: 10px; }
+.phone-signal i { display: block; width: 3px; border-radius: 1px; background: #1F3354; }
+.phone-signal i:nth-child(1) { height: 4px; }
+.phone-signal i:nth-child(2) { height: 6px; }
+.phone-signal i:nth-child(3) { height: 8px; }
+.phone-signal i:nth-child(4) { height: 10px; }
+.phone-island { position: absolute; top: 10px; left: 50%; width: 72px; height: 20px; margin-left: -36px; border-radius: 999px; background: #0E121C; }
+
+/* header */
+.phone-head { margin-top: 26px; }
+.phone-head h3 { font-family: var(--serif); font-size: 30px; font-weight: 500; line-height: 1; letter-spacing: -.01em; margin: 0; color: #1F3354; }
+.phone-progress { height: 5px; border-radius: 999px; background: #E9E2D2; margin-top: 16px; overflow: hidden; }
+.phone-progress__fill { width: 72%; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #F26B2C, #F9A370); transform-origin: left; animation: phone-fill 1.4s cubic-bezier(.16, 1, .3, 1) .9s both; }
+.phone-meta { display: flex; justify-content: space-between; margin-top: 8px; font-family: var(--mono); font-size: 10.5px; letter-spacing: .04em; color: #4E5D78; font-variant-numeric: tabular-nums; }
+
+/* milestone list */
+.phone-list { list-style: none; margin: 22px 0 0; padding: 0; display: flex; flex-direction: column; }
+.phone-list li { display: flex; align-items: center; gap: 8px; padding: 11px 0; border-top: 1px solid #EFE8D5; font-size: 12px; white-space: nowrap; }
+.phone-list li:last-child { border-bottom: 1px solid #EFE8D5; }
+.phone-check { width: 18px; height: 18px; border-radius: 50%; display: grid; place-items: center; flex-shrink: 0; border: 1.5px solid #D6CDB8; color: transparent; }
+.phone-label { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; font-weight: 500; color: #1F3354; }
+.phone-note { flex-shrink: 0; font-family: var(--mono); font-size: 9.5px; letter-spacing: .05em; padding: 3px 7px; border-radius: 999px; }
+.is-done .phone-check { background: #F26B2C; border-color: #F26B2C; color: #FBF8F1; }
+.is-done .phone-note { background: rgba(242, 107, 44, .14); color: #A63F0E; }
+.is-review .phone-check { border-color: #1F3354; border-style: dashed; }
+.is-review .phone-note { background: rgba(31, 51, 84, .10); color: #2C4570; }
+.is-next .phone-label { color: #4E5D78; font-weight: 400; }
+.is-next .phone-note { background: #F1EBDC; color: #4E5D78; }
+
+/* footer */
+.phone-foot { margin-top: auto; display: flex; align-items: center; gap: 9px; padding: 10px 12px; border-radius: 14px; background: #1F3354; color: #FAF1E0; font-size: 11px; line-height: 1.35; }
+.phone-foot-ico { width: 24px; height: 24px; border-radius: 8px; display: grid; place-items: center; flex-shrink: 0; background: rgba(242, 107, 44, .22); color: #FFB37A; }
+
+@keyframes phone-rise { from { opacity: 0; transform: translateY(46px) scale(.96); } to { opacity: 1; transform: none; } }
+@keyframes phone-drift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes phone-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .phone-wrap, .phone, .phone-progress__fill { animation: none; }
+}

@@ -1,3 +1,27 @@
-/* Components/styles/WhySection.css */
+/* Components/styles/WhySection.css — centred statement, two ledgers */
 .why { padding: 140px 0; background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-@media (max-width: 640px) { .why { padding: 80px 0; } }
+.why-head { text-align: center; display: flex; flex-direction: column; align-items: center; }
+.why-head h2 { margin-top: 18px; max-width: 14ch; text-wrap: balance; }
+.why-statement { margin: 34px 0 0; max-width: 34ch; font-family: var(--serif); font-size: clamp(21px, 1.9vw, 27px); line-height: 1.38; letter-spacing: -.005em; color: var(--ink-2); text-wrap: pretty; }
+.why-statement em { font-style: italic; color: var(--moss-2); }
+
+.why-ledgers { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 96px; margin-top: 72px; }
+.why-ledgers::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: var(--line); }
+.why-ledger { margin: 0; border-top: 1.5px solid var(--ink); }
+.why-ledger div { display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); gap: 0 28px; padding: 26px 0 28px; border-bottom: 1px solid var(--line); align-items: baseline; }
+.why-ledger dt { font-family: var(--serif); font-weight: 500; font-size: clamp(21px, 1.7vw, 24px); letter-spacing: -.015em; line-height: 1.15; color: var(--ink); }
+.why-ledger dd { margin: 0; font-size: 15px; line-height: 1.6; color: var(--ink-2); }
+
+@media (max-width: 980px) {
+  .why-ledgers { grid-template-columns: 1fr; gap: 0; margin-top: 52px; }
+  .why-ledgers::before { display: none; }
+  .why-ledger + .why-ledger { border-top: 0; }
+  .why-ledger div { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); }
+}
+@media (max-width: 640px) {
+  .why { padding: 80px 0; }
+  .why-head { text-align: left; align-items: flex-start; }
+  .why-head h2 { max-width: none; }
+  .why-statement { max-width: none; margin-top: 26px; }
+  .why-ledger div { grid-template-columns: 1fr; gap: 8px; padding: 20px 0 22px; }
+}

@@ -13,6 +13,7 @@ const PATHS = {
   workflow: <><rect x="3" y="3" width="6" height="6" rx="1.5" /><rect x="15" y="3" width="6" height="6" rx="1.5" /><rect x="9" y="15" width="6" height="6" rx="1.5" /><path d="M9 6h6M6 9v3a3 3 0 0 0 3 3M18 9v3a3 3 0 0 1-3 3" /></>,
   spark: <><path d="M12 3l1.6 4.5L18 9l-4.4 1.5L12 15l-1.6-4.5L6 9l4.4-1.5z" /><path d="M19 14l.7 2 2 .7-2 .7L19 19l-.7-1.6-2-.7 2-.7z" /></>,
   check: <path d="M5 13l4 4L19 7" />,
+  minus: <path d="M5 12h14" />,
   plus: <path d="M5 12h14M12 5v14" />,
   bolt: <path d="M13 2L4 14h7l-1 8 9-12h-7z" />,
   shield: <><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6z" /><path d="M9 12l2 2 4-4" /></>,

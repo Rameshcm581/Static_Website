@@ -12,20 +12,15 @@ const SATELLITES = [
   { icon: 'layers', cls: 'c2', title: 'Technology Consulting', text: 'Advisors who also build', tag: 'prog', label: 'Active' },
 ];
 
-const CONNECTORS = [
-  { x2: 90, y2: 60 },
-  { x2: 250, y2: 60 },
-  { x2: 295, y2: 230 },
-  { x2: 250, y2: 400 },
-  { x2: 90, y2: 400 },
-  { x2: 45, y2: 230 },
-];
+// Base angle of each satellite on the orbit; the animation adds a full turn on top.
+const ORBIT_START = -90;
+const ORBIT_STEP = 60;
 
 const STATS = [
-  { num: '6', label: 'Service areas' },
-  { num: '3', label: 'Platforms (web · iOS · Android)' },
-  { num: COMPANY.foundedYear, label: `Founded · ${COMPANY.state}` },
-  { num: '1', label: 'Accountable team' },
+  { num: '6', label: 'Service areas', detail: 'Build, ship, advise' },
+  { num: '3', label: 'Platforms', detail: 'Web · iOS · Android' },
+  { num: COMPANY.foundedYear, label: 'Founded', detail: `${COMPANY.operationsCity}, ${COMPANY.state}` },
+  { num: '1', label: 'Accountable team', detail: 'One lead throughout' },
 ];
 
 const OUTCOMES = ['Faster time-to-market', 'AI built in, not bolted on', 'Senior team, total ownership'];
@@ -49,29 +44,28 @@ export default function ServicesHero() {
                 <div className="sv-stat" key={stat.label}>
                   <div className="num">{stat.num}</div>
                   <div className="lbl">{stat.label}</div>
+                  <div className="det">{stat.detail}</div>
                 </div>
               ))}
             </div>
           </div>
           <div className="sv-anim" aria-hidden="true">
-            <svg className="connectors" viewBox="0 0 340 460" preserveAspectRatio="none">
-              {CONNECTORS.map((line) => (
-                <line key={`${line.x2}-${line.y2}`} x1={170} y1={230} x2={line.x2} y2={line.y2} />
-              ))}
-            </svg>
             <div className="sv-hub">
               <div className="ico"><Icon name="cpu" size={26} stroke={1.6} /></div>
               <div className="count">6</div>
               <div className="lbl">Services</div>
             </div>
             {SATELLITES.map((sat, i) => (
-              <div className={`sv-sat sat-${i}`} key={sat.title}>
-                <div className="row">
-                  <div className={`sat-ico ${sat.cls}`}><Icon name={sat.icon} size={16} stroke={1.5} /></div>
-                  <div className="sat-body">
-                    <h5>{sat.title}</h5>
-                    <p>{sat.text}</p>
-                    <span className={`stag ${sat.tag}`}>{sat.label}</span>
+              <div className="sv-orbiter" key={sat.title} style={{ '--a': `${ORBIT_START + i * ORBIT_STEP}deg` }}>
+                <span className="sv-spoke" />
+                <div className="sv-sat">
+                  <div className="row">
+                    <div className={`sat-ico ${sat.cls}`}><Icon name={sat.icon} size={16} stroke={1.5} /></div>
+                    <div className="sat-body">
+                      <h5>{sat.title}</h5>
+                      <p>{sat.text}</p>
+                      <span className={`stag ${sat.tag}`}>{sat.label}</span>
+                    </div>
                   </div>
                 </div>
               </div>
