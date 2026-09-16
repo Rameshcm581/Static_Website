@@ -1,0 +1,35 @@
+/* Home/Home/styles/WhyHome.css — struck-through habits, our way beneath */
+.whyh { padding: 140px 0; background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.whyh-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 60px; margin-bottom: 64px; }
+.whyh-head h2 { margin-top: 18px; max-width: 680px; }
+.whyh-head p { max-width: 400px; margin: 0 0 6px; font-size: 16px; line-height: 1.6; color: var(--ink-2); }
+
+.whyh-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 48px; border-top: 1.5px solid var(--ink); }
+.whyh-list li { padding: 34px 0 40px; border-bottom: 1px solid var(--line); animation: pair-in .9s cubic-bezier(.16,1,.3,1) both; animation-delay: calc(.05s + var(--i) * .08s); }
+
+/* the old way: struck through with a line that draws itself in */
+.whyh-old { display: inline-block; position: relative; font-size: 14.5px; line-height: 1.4; color: #4E5D78; }
+.whyh-old__text { position: relative; }
+.whyh-old__text::after { content: ""; position: absolute; left: -2px; right: -2px; top: 52%; height: 2px; border-radius: 2px; background: var(--moss); transform: scaleX(0); transform-origin: left center;
+  animation: strike .7s cubic-bezier(.16,1,.3,1) both; animation-delay: calc(.35s + var(--i) * .1s); }
+.whyh-list h3 { margin-top: 18px; font-size: clamp(24px, 2vw, 28px); letter-spacing: -.015em; line-height: 1.1; color: var(--ink); }
+.whyh-list p { margin: 10px 0 0; font-size: 15px; line-height: 1.6; color: var(--ink-2); }
+
+@keyframes pair-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@keyframes strike { to { transform: scaleX(1); } }
+@supports (animation-timeline: view()) {
+  .whyh-list li { animation-timeline: view(); animation-delay: 0s; animation-range: entry 5% entry 40%; }
+  .whyh-old__text::after { animation-timeline: view(); animation-delay: 0s; animation-range: entry 60% entry 160%; }
+}
+
+@media (max-width: 980px) {
+  .whyh-head { flex-direction: column; align-items: flex-start; gap: 20px; margin-bottom: 44px; }
+  .whyh-head p { max-width: 560px; }
+  .whyh-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; }
+}
+@media (max-width: 640px) {
+  .whyh { padding: 80px 0; }
+  .whyh-list { grid-template-columns: 1fr; }
+  .whyh-list li { padding: 24px 0 28px; }
+}
+@media (prefers-reduced-motion: reduce) { .whyh-list li { animation: none; } .whyh-old__text::after { animation: none; transform: none; } }
