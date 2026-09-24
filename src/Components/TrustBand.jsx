@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
-import Icon from './Icon';
 import { COMPANY, MAILTO } from '@data/company';
 import { ROUTES } from '@data/navigation';
+import { Link } from 'react-router-dom';
+import Icon from './Icon';
 import './styles/TrustBand.css';
 
 export default function TrustBand() {
@@ -22,7 +22,8 @@ export default function TrustBand() {
           <div className="trust-card">
             <div className="trust-ico"><Icon name="calendar" size={20} stroke={1.4} /></div>
             <h4>Founded {COMPANY.foundedYear}</h4>
-            <p>Incorporated {COMPANY.incorporatedOn}, {COMPANY.registrar}<br />Status: {COMPANY.status}</p>
+            <p>Status: {COMPANY.status}</p>
+            {/* <p>Incorporated {COMPANY.incorporatedOn}, {COMPANY.registrar}<br />Status: {COMPANY.status}</p> */}
           </div>
           <div className="trust-card">
             <div className="trust-ico"><Icon name="mail" size={20} stroke={1.4} /></div>
