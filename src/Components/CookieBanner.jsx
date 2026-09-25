@@ -1,16 +1,18 @@
-// src/Components/CookieBanner.jsx — Floating cookie consent notification banner
+// src/Components/CookieBanner.jsx — Compact Minimalist Cookie Banner & Preferences Modal Trigger
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { ROUTES } from '@data/navigation';
+import CookiePreferencesModal from './CookiePreferencesModal';
+import { COMPANY } from '@data/company';
+import './styles/CookieBanner.css';
 
 export default function CookieBanner() {
   const [visible, setVisible] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     try {
       const consent = localStorage.getItem('atmytech_cookie_consent');
       if (!consent) {
-        // Show banner after 1.5 seconds delay for natural page load feel
+        // Show banner after 1.5 seconds delay for natural feel
         const timer = setTimeout(() => setVisible(true), 1500);
         return () => clearTimeout(timer);
       }
@@ -47,29 +49,41 @@ export default function CookieBanner() {
     setVisible(false);
   };
 
-  if (!visible) {
-    return null;
-  }
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setVisible(false); // Hide banner once user saves preferences
+  };
 
   return (
-    <div className="cookie-consent-banner" role="region" aria-label="Cookie Consent Banner">
-      <h4>We value your privacy 🍪</h4>
-      <p>
-        Atmytech Software Solutions uses essential cookies to make our site work. With your permission, we also use cookies to analyze performance and improve your experience.
-      </p>
-      <div className="cookie-consent-banner__btns">
-        <button type="button" className="cookie-consent-btn-accept" onClick={handleAcceptAll}>
-          Accept All
-        </button>
-        <button type="button" className="cookie-consent-btn-essential" onClick={handleEssentialOnly}>
-          Essential Only
-        </button>
-      </div>
-      <div>
-        <Link to={ROUTES.COOKIES} className="cookie-consent-link" onClick={() => setVisible(false)}>
-          Manage Preferences & Cookie Policy
-        </Link>
-      </div>
-    </div>
+    <>
+      {visible && (
+        <div className="cookie-consent-banner" role="region" aria-label="Cookie Privacy Preferences">
+          <h4>Cookie Settings & Privacy</h4>
+          <p>
+            {COMPANY.name} uses essential cookies to ensure secure site performance and optional analytics cookies to enhance your experience.
+          </p>
+          <div className="cookie-consent-banner__btns">
+            <button type="button" className="cookie-consent-btn-accept" onClick={handleAcceptAll}>
+              Accept All
+            </button>
+            <button type="button" className="cookie-consent-btn-essential" onClick={handleEssentialOnly}>
+              Essential Only
+            </button>
+            <button type="button" className="cookie-consent-btn-manage" onClick={handleOpenModal}>
+              Manage Preferences
+            </button>
+          </div>
+        </div>
+      )}
+
+      <CookiePreferencesModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
+    </>
   );
 }
