@@ -7,6 +7,8 @@ import NavBar from './NavBar';
 import Footer from './Footer';
 import FloatingCta from './FloatingCta';
 
+import CookieBanner from '@components/CookieBanner';
+
 export default function Layout() {
   const { isMenuOpen } = useMenu();
   useScrollToTop();
@@ -24,6 +26,7 @@ export default function Layout() {
       </main>
       <Footer />
       <FloatingCta />
+      <CookieBanner />
     </div>
   );
 }

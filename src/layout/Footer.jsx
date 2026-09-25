@@ -21,9 +21,8 @@ const COMPANY_LINKS = [
 ];
 
 const SOCIAL_LINKS = [
-  { icon: 'linkedin', label: 'LinkedIn', href: '#' },
-  { icon: 'twitter', label: 'Twitter', href: '#' },
-  { icon: 'insta', label: 'Instagram', href: '#' },
+  { icon: 'linkedin', label: 'LinkedIn', href: COMPANY.social.linkedin },
+  { icon: 'insta', label: 'Instagram', href: COMPANY.social.instagram },
 ];
 
 export default function Footer() {
@@ -69,7 +68,7 @@ export default function Footer() {
             <p>An occasional letter — what we&apos;re learning building products. No spam, easy to leave.</p>
             <div className="foot-social">
               {SOCIAL_LINKS.map((social) => (
-                <a key={social.icon} href={social.href} aria-label={social.label}>
+                <a key={social.icon} href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.label}>
                   <Icon name={social.icon} size={18} />
                 </a>
               ))}
@@ -79,9 +78,8 @@ export default function Footer() {
         <div className="foot-bot">
           <div>© {COMPANY.copyrightYear} {COMPANY.legalName} · {COMPANY.registrationLabel} {COMPANY.registrationNumber} · {COMPANY.state}, {COMPANY.country}</div>
           <div className="legal">
-            <a href="#">Privacy</a>
-            <a href="#">Terms</a>
-            <a href="#">Cookies</a>
+            <Link to={ROUTES.PRIVACY}>Privacy Policy</Link>
+            <Link to={ROUTES.TERMS}>Terms & Conditions</Link>
           </div>
         </div>
       </div>

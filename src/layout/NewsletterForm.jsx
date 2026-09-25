@@ -18,7 +18,7 @@ export default function NewsletterForm() {
           id="newsletter-email"
           name="email"
           type="email"
-          placeholder="you@yourcompany.com"
+          placeholder="you@company.com"
           value={email}
           onChange={handleChange}
           required

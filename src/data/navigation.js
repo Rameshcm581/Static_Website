@@ -8,6 +8,9 @@ export const ROUTES = {
   CONSULTING: '/services/technology-consulting',
   CAREERS: '/careers',
   CONTACT: '/contact',
+  PRIVACY: '/privacy',
+  TERMS: '/terms',
+  COOKIES: '/cookies',
 };
 
 export const NAV_LINKS = [

@@ -1,6 +1,6 @@
 /* layout/styles/Footer.css */
 .footer { background: var(--bg); padding: 80px 0 32px; }
-.foot-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1.4fr; gap: 48px; padding-bottom: 60px; border-bottom: 1px solid var(--line); }
+.foot-grid { display: grid; grid-template-columns: 1.3fr 0.9fr 0.9fr 1fr 1.8fr; gap: 36px; padding-bottom: 60px; border-bottom: 1px solid var(--line); }
 .foot-grid h5 { font-family: var(--mono); font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); font-weight: 500; margin: 0 0 18px; }
 .foot-grid ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; font-size: 14px; color: var(--ink-2); }
 .foot-grid li a:hover { color: var(--moss); }

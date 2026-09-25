@@ -13,6 +13,9 @@ const MvpDevelopment = lazy(() => import('@/Services/pages/MvpDevelopment'));
 const TechnologyConsulting = lazy(() => import('@/Services/pages/TechnologyConsulting'));
 const Careers = lazy(() => import('@/Careers/pages/Careers'));
 const Contact = lazy(() => import('@/Contact/pages/Contact'));
+const PrivacyPolicy = lazy(() => import('@/Legal/pages/PrivacyPolicy'));
+const TermsOfService = lazy(() => import('@/Legal/pages/TermsOfService'));
+const CookiePolicy = lazy(() => import('@/Legal/pages/CookiePolicy'));
 
 export default function App() {
   return (
@@ -26,6 +29,9 @@ export default function App() {
           <Route path={ROUTES.CONSULTING} element={<TechnologyConsulting />} />
           <Route path={ROUTES.CAREERS} element={<Careers />} />
           <Route path={ROUTES.CONTACT} element={<Contact />} />
+          <Route path={ROUTES.PRIVACY} element={<PrivacyPolicy />} />
+          <Route path={ROUTES.TERMS} element={<TermsOfService />} />
+          <Route path={ROUTES.COOKIES} element={<CookiePolicy />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

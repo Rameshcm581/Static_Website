@@ -21,7 +21,8 @@ export default function FloatingCta() {
     <Button
       to={ROUTES.CONTACT}
       variant="accent"
-      iconLeft="rocket"
+      iconLeft="spark"
+      iconSize={18}
       className={`float-cta${show ? ' show' : ''}`}
     >
       Start a project

@@ -23,6 +23,10 @@ export const COMPANY = {
   country: 'India',
   website: 'https://atmytech.com/',
   copyrightYear: '2026',
+  social: {
+    linkedin: 'https://www.linkedin.com/company/atmytech-software-solutions/',
+    instagram: 'https://www.instagram.com/atmytech_software_solutions/',
+  },
 };
 
 export const MAILTO = `mailto:${COMPANY.email}`;

@@ -35,6 +35,7 @@ const PATHS = {
   compass: <><circle cx="12" cy="12" r="9" /><path d="M15 9l-2 6-4 1 1-4z" fill="currentColor" stroke="none" /></>,
   menu: <path d="M4 7h16M4 12h16M4 17h16" />,
   close: <path d="M6 6l12 12M18 6L6 18" />,
+  print: <><polyline points="6 9 6 2 18 2 18 9" /><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" /><rect x="6" y="14" width="12" height="8" rx="1" /></>,
 };
 
 const ICON_NAMES = Object.keys(PATHS);
