@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import Layout from '@layout/Layout';
 import NotFound from '@common/pages/NotFound';
+import PageLoader from '@components/PageLoader';
 import { ROUTES } from '@data/navigation';
 
 // Feature pages — lazy loaded
@@ -19,7 +20,7 @@ const CookiePolicy = lazy(() => import('@/Legal/pages/CookiePolicy'));
 
 export default function App() {
   return (
-    <Suspense fallback={<div className="page-loader">Loading…</div>}>
+    <Suspense fallback={<PageLoader />}>
       <Routes>
         <Route path={ROUTES.HOME} element={<Layout />}>
           <Route index element={<Home />} />

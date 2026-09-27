@@ -52,9 +52,6 @@ p { line-height: 1.6; color: var(--ink-2); }
 section { position: relative; }
 .rule { height: 1px; background: var(--line); width: 100%; }
 
-/* ── Page loader (Suspense fallback) ────────────────────────────────── */
-.page-loader { display: flex; align-items: center; justify-content: center; min-height: 60vh; font-family: var(--mono); font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
-
 /* ── Mobile typography ──────────────────────────────────────────────── */
 @media (max-width: 640px) {
   h1 { font-size: clamp(40px, 12vw, 56px); }
