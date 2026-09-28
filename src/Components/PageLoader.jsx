@@ -2,17 +2,30 @@ import PropTypes from 'prop-types';
 import { COMPANY } from '@data/company';
 import './styles/PageLoader.css';
 
+const logoUrl = `${import.meta.env.BASE_URL}assets/images/logo.png`;
+
+// Eagerly preload image into browser memory immediately on JS load
+if (typeof window !== 'undefined') {
+  const img = new Image();
+  img.src = logoUrl;
+}
+
 export default function PageLoader({
-  minHeight = '60vh',
+  minHeight = '100vh',
   label = 'Loading...',
   variant = 'orbit',
+  fullScreen = true,
 }) {
-  const logoUrl = `${import.meta.env.BASE_URL}assets/images/logo.png`;
+  const containerClasses = [
+    'page-loader',
+    `page-loader--${variant}`,
+    fullScreen ? 'page-loader--fullscreen' : '',
+  ].filter(Boolean).join(' ');
 
   return (
     <div
-      className={`page-loader page-loader--${variant}`}
-      style={{ minHeight }}
+      className={containerClasses}
+      style={!fullScreen ? { minHeight } : undefined}
       role="status"
       aria-label={label}
     >
@@ -28,6 +41,9 @@ export default function PageLoader({
                 src={logoUrl}
                 alt={COMPANY.name}
                 className="page-loader__logo-orbit"
+                loading="eager"
+                fetchpriority="high"
+                decoding="sync"
               />
             </div>
             <div className="page-loader__dots" aria-hidden="true">
@@ -46,6 +62,9 @@ export default function PageLoader({
                 src={logoUrl}
                 alt={COMPANY.name}
                 className="page-loader__logo-shimmer"
+                loading="eager"
+                fetchpriority="high"
+                decoding="sync"
               />
             </div>
             <div className="page-loader__dots" aria-hidden="true">
@@ -64,6 +83,9 @@ export default function PageLoader({
                 src={logoUrl}
                 alt={COMPANY.name}
                 className="page-loader__logo-badge"
+                loading="eager"
+                fetchpriority="high"
+                decoding="sync"
               />
             </div>
             <div className="page-loader__dots" aria-hidden="true">
@@ -82,4 +104,5 @@ PageLoader.propTypes = {
   minHeight: PropTypes.string,
   label: PropTypes.string,
   variant: PropTypes.oneOf(['orbit', 'shimmer', 'badge']),
+  fullScreen: PropTypes.bool,
 };

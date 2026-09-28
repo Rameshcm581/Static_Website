@@ -4,12 +4,24 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 60vh;
   width: 100%;
+  min-height: 60vh;
   padding: 40px 20px;
   position: relative;
   overflow: hidden;
-  background: transparent;
+  background: var(--bg, #F5F1E8);
+  box-sizing: border-box;
+}
+
+/* Fullscreen screen-centered layout */
+.page-loader--fullscreen {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 100vh;
+  z-index: 9999;
 }
 
 .page-loader__inner {
