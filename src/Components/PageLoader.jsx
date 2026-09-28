@@ -42,7 +42,7 @@ export default function PageLoader({
                 alt={COMPANY.name}
                 className="page-loader__logo-orbit"
                 loading="eager"
-                fetchpriority="high"
+                fetchPriority="high"
                 decoding="sync"
               />
             </div>
@@ -63,7 +63,7 @@ export default function PageLoader({
                 alt={COMPANY.name}
                 className="page-loader__logo-shimmer"
                 loading="eager"
-                fetchpriority="high"
+                fetchPriority="high"
                 decoding="sync"
               />
             </div>
@@ -84,7 +84,7 @@ export default function PageLoader({
                 alt={COMPANY.name}
                 className="page-loader__logo-badge"
                 loading="eager"
-                fetchpriority="high"
+                fetchPriority="high"
                 decoding="sync"
               />
             </div>
