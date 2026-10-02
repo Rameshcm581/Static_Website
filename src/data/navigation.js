@@ -8,6 +8,7 @@ export const ROUTES = {
   CONSULTING: '/services/technology-consulting',
   CAREERS: '/careers',
   CONTACT: '/contact',
+  REGISTER: '/register',
   PRIVACY: '/privacy',
   TERMS: '/terms',
   COOKIES: '/cookies',
