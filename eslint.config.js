@@ -36,6 +36,7 @@ export default [
       'react/prop-types': 'warn',
       'react/display-name': 'warn',
       'react/jsx-no-target-blank': 'error',
+      'react/no-unknown-property': ['error', { ignore: ['fetchpriority'] }],
 
       // Hooks
       'react-hooks/rules-of-hooks': 'error',
