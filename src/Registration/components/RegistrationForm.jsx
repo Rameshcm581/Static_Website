@@ -7,6 +7,7 @@ import StepCourse from './StepCourse';
 import StepReview from './StepReview';
 import SuccessPanel from './SuccessPanel';
 import { LAST_STEP, STEP_FIELDS, validate } from '../utils/validation';
+import { submitRegistrationApi } from '@api/apicall';
 
 export default function RegistrationForm({ values, onChange, onReset }) {
   const [step, setStep] = useState(1);
@@ -14,6 +15,7 @@ export default function RegistrationForm({ values, onChange, onReset }) {
   const [errors, setErrors] = useState({});
   const [shaking, setShaking] = useState(null);
   const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const [submitted, setSubmitted] = useState(null);
 
   const cardRef = useRef(null);
@@ -72,6 +74,7 @@ export default function RegistrationForm({ values, onChange, onReset }) {
   const goToStep = (n, { focusHeading = true } = {}) => {
     setBackwards(n < step);
     setStep(n);
+    setSubmitError('');
     cardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     if (focusHeading) {
       setTimeout(() => {
@@ -95,7 +98,7 @@ export default function RegistrationForm({ values, onChange, onReset }) {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Enter key inside early steps behaves like Continue
@@ -108,13 +111,20 @@ export default function RegistrationForm({ values, onChange, onReset }) {
     }
 
     const refCode = `REG-${new Date().getFullYear()}-${Math.floor(10000 + Math.random() * 90000)}`;
-    const data = { ...values, refCode };
+    const data = { ...values, refCode, submittedAt: new Date().toISOString() };
     setSubmitting(true);
+    setSubmitError('');
 
-    setTimeout(() => {
-      setSubmitting(false);
+    try {
+      await submitRegistrationApi(data);
       setSubmitted(data);
-    }, 1100);
+    } catch (err) {
+      setSubmitError(
+        err.message || 'We could not submit your registration. Please check your connection and try again.'
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   useEffect(() => {
@@ -130,6 +140,7 @@ export default function RegistrationForm({ values, onChange, onReset }) {
     setErrors({});
     setShaking(null);
     setSubmitted(null);
+    setSubmitError('');
     setBackwards(false);
     setStep(1);
     cardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -181,6 +192,15 @@ export default function RegistrationForm({ values, onChange, onReset }) {
               {step === 3 && <StepReview {...stepProps} onGoTo={goToStep} />}
             </div>
           </div>
+
+          {submitError && (
+            <div className="reg-submit-error" role="alert">
+              <span className="reg-submit-error__icon" aria-hidden="true">⚠️</span>
+              <div className="reg-submit-error__content">
+                <strong>Submission failed:</strong> {submitError}
+              </div>
+            </div>
+          )}
 
           <div className="reg-actions">
             {step > 1 && (

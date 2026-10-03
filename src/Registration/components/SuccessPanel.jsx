@@ -20,7 +20,7 @@ export default function SuccessPanel({ data, onRegisterAnother, panelRef }) {
       <div className="reg-success__badge" aria-hidden="true">
         <svg viewBox="0 0 64 64" width="76" height="76" className="reg-success__svg">
           <circle className="reg-success__ring" cx="32" cy="32" r="29" />
-          <path className="reg-success__tick" d="M20 33.5 28.5 42 45 24" />
+          <path className="reg-success__tick" d="M19.5 32.5 28 41 44.5 23" />
         </svg>
       </div>
 
